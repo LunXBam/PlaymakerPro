@@ -1,3 +1,45 @@
 <resources>
     <string name="app_name">Coaching_App</string>
+    <string-array name="player_names">
+        <item>Messi</item>
+        <item>Sergio Busquets</item>
+        <item>Iniesta</item>
+        <item>Alba</item>
+        <item>Rafinha</item>
+        <item>Rakitic</item>
+        <item>Suarez</item>
+        <item>Paulinho</item>
+        <item>Semedo</item>
+        <item>Cucurella</item>
+        <item>Coutinho</item>
+    </string-array>
+
+    <string-array name="player_numbers">
+        <item>10</item>
+        <item>5</item>
+        <item>8</item>
+        <item>18</item>
+        <item>22</item>
+        <item>4</item>
+        <item>9</item>
+        <item>15</item>
+        <item>11</item>
+        <item>3</item>
+        <item>14</item>
+    </string-array>
+
+    <string-array name="player_positions">
+        <item>Forward</item>
+        <item>Midfielder</item>
+        <item>Midfielder</item>
+        <item>Defender</item>
+        <item>Midfielder</item>
+        <item>Midfielder</item>
+        <item>Forward</item>
+        <item>Midfielder</item>
+        <item>Defender</item>
+        <item>Defender</item>
+        <item>Midfielder</item>
+    </string-array>
+
 </resources>
