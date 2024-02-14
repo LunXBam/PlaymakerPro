@@ -3,9 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fullscreen"
+    android:background="@drawable/login_background"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
+
 
 
     <RelativeLayout
@@ -37,6 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name: Lionel Messi"
+                android:textColor="@color/yellow"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -45,6 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Team: Barcelona"
+                android:textColor="@color/yellow"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -53,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Position: Forward"
+                android:textColor="@color/yellow"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -64,6 +69,7 @@
             android:layout_above="@+id/bottomSpacer"
             android:layout_below="@+id/playerInfoBox"
             android:layout_marginTop="25dp"
+
             android:layout_marginBottom="-62dp"
             android:padding="16dp">
 
@@ -72,7 +78,168 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <TableLayout
+                    android:id="@+id/tableLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="509dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/button2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
 
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/WorldCupQualifiers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:textColor="@color/yellow"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="World Cup Qualifiers"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/Goals"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:textColor="@color/yellow"
+                            android:layout_marginEnd="10dp"
+                            android:text="Goals"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/Assists"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/yellow"
+                            android:text="Assists"
+                            android:textSize="20sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/years1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/yellow"
+                            android:text="2023-25"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/goals1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:textColor="@color/yellow"
+                            android:layout_marginEnd="10dp"
+                            android:text="3"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/assists1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:textColor="@color/yellow"
+                            android:layout_marginEnd="10dp"
+                            android:text="0"
+                            android:textSize="20sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/name3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:textColor="@color/yellow"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="2020-22"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/number3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/yellow"
+                            android:text="15"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/position3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:textColor="@color/yellow"
+                            android:layout_marginEnd="10dp"
+                            android:text="0"
+                            android:textSize="20sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/name4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/yellow"
+                            android:text="2015-2017"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/number4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:textColor="@color/yellow"
+                            android:layout_marginEnd="10dp"
+                            android:text="10"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/position4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/yellow"
+                            android:text="2"
+                            android:textSize="20sp" />
+                    </TableRow>
+
+                </TableLayout>
 
             </LinearLayout>
 
