@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityRosterBinding
 
-class RosterActivity : AppCompatActivity() {
+class RosterActivity : AppCompatActivity(){
     private lateinit var binding: ActivityRosterBinding
 
-    val players = arrayListOf<PlayerModel>()
+    var players = arrayListOf<PlayerModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class RosterActivity : AppCompatActivity() {
 
         loadData()
 
-        val adapter : Player_RecyclerViewAdapter = Player_RecyclerViewAdapter(players)
+        var adapter : PlayerRecyclerViewAdapter = PlayerRecyclerViewAdapter(players)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
 
@@ -35,7 +35,7 @@ class RosterActivity : AppCompatActivity() {
         val positions = arrayOf(resources.getStringArray(R.array.player_positions))
 
         for(i in 0..names.size){
-            players.add(PlayerModel(names[i].toString(),numbers[i].toString(),positions[i].toString()))
+            players.add(PlayerModel(names[i].toString(),"#" + numbers[i].toString(),positions[i].toString()))
         }
     }
 }
