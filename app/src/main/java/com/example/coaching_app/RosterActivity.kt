@@ -8,8 +8,11 @@ import com.example.coaching_app.databinding.ActivityRosterBinding
 
 class RosterActivity : AppCompatActivity(){
     private lateinit var binding: ActivityRosterBinding
-
-    var players = arrayListOf<PlayerModel>()
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var playerList : ArrayList<PlayerModel>
+    private lateinit var nameList:Array<String>
+    private lateinit var numList:Array<String>
+    private lateinit var posList:Array<String>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,23 +22,23 @@ class RosterActivity : AppCompatActivity(){
         val view = binding.root
         setContentView(view)
 
-        val recyclerView : RecyclerView = findViewById(R.id.playerListRecyclerView)
+        recyclerView = findViewById(R.id.playerListRecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+
+        playerList = arrayListOf<PlayerModel>()
 
         loadData()
-
-        var adapter : PlayerRecyclerViewAdapter = PlayerRecyclerViewAdapter(players)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-
-
     }
 
     private fun loadData(){
-        val names = arrayOf(resources.getStringArray(R.array.player_names))
-        val numbers = arrayOf(resources.getStringArray(R.array.player_numbers))
-        val positions = arrayOf(resources.getStringArray(R.array.player_positions))
+        nameList = resources.getStringArray(R.array.player_names)
+        numList = resources.getStringArray(R.array.player_numbers)
+        posList = resources.getStringArray(R.array.player_positions)
 
-        for(i in 0..names.size){
-            players.add(PlayerModel(names[i].toString(),"#" + numbers[i].toString(),positions[i].toString()))
+        for(i in nameList.indices){
+            playerList.add(PlayerModel(nameList[i].toString(),"#" + numList[i].toString(),posList[i].toString()))
         }
+        recyclerView.adapter = PlayerRecyclerViewAdapter(playerList)
     }
 }
