@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -72,6 +73,7 @@ dependencies {
 
     //Required for RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("com.google.firebase:firebase-firestore:24.10.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

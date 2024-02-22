@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "437331363686",
+    "project_id": "playmakerpro-2468",
+    "storage_bucket": "playmakerpro-2468.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437331363686:android:1990efd238166c9418aaa7",
+        "android_client_info": {
+          "package_name": "com.example.coaching_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6FCrYfKEqUMJxVyl_JsDJikfr2PhPcVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
