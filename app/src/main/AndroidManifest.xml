@@ -13,17 +13,16 @@
         android:theme="@style/Theme.Coaching_App"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity2"
+            android:exported="false"
+            android:label="@string/title_activity_main2"
+            android:theme="@style/Theme.Coaching_App" />
+        <activity
             android:name=".PlaybookActivity"
             android:exported="false" />
         <activity
             android:name=".RosterActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".PlayerActivity"
             android:exported="false" />
@@ -31,7 +30,18 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Coaching_App"></activity>
+            android:theme="@style/Theme.Coaching_App">
+
+        </activity>
+
+        <activity android:name=".GameHistoryActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
