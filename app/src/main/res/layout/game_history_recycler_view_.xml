@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@color/blue">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/account_icon" />
+
+
+    <TextView
+        android:id="@+id/oppTeamName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imageView"
+        android:hint="Opponent Name:"
+        android:textColor="@color/yellow"
+        android:textColorHint="@color/yellow"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/oppTeamName"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:hint="Score:"
+        android:textColor="@color/yellow"
+        android:textColorHint="@color/yellow"
+        android:textSize="15dp" />
+
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="206dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:hint="Result:"
+        android:textColor="@color/yellow"
+        android:textColorHint="@color/yellow"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/gameDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/oppTeamName"
+        android:layout_marginStart="206dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:hint="Date:"
+        android:textColor="@color/yellow"
+        android:textColorHint="@color/yellow"
+        android:textSize="15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/imageView"
+        android:layout_marginTop="10dp"
+        android:background="@color/yellow" />
+
+
+</RelativeLayout>
+
