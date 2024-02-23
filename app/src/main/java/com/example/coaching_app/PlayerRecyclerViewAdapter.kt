@@ -19,7 +19,7 @@ class PlayerRecyclerViewAdapter(private val playerList: ArrayList<PlayerModel>):
 
     override fun onBindViewHolder(holder : MyViewHolder, position: Int) {
         val currentItem = playerList[position]
-        holder.tvName.text = currentItem.name
+        holder.tvName.text = currentItem.fName
         holder.tvNumber.text = currentItem.num
         holder.tvPosition.text = currentItem.pos
     }

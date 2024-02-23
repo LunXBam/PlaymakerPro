@@ -9,4 +9,5 @@ data class PlayerModel (
     var nationality: String? = null,
     var num: String? = null,
     var pos: String? = null,
+    var playerID: String? = null
 )
