@@ -12,7 +12,7 @@ class PlaybookActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPlaybookBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var playsList : ArrayList<PlaybookModel>
-    private lateinit var imageList:Array<String>
+    private lateinit var imageList:Array<Int>
     private lateinit var titleList:Array<String>
 
 

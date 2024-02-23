@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@id/pageTitleTextView">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/firstNameTextView"
+            android:id="@+id/firstNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="First Name" />
@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/lastNameTextView"
+            android:id="@+id/lastNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Last Name" />
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/heightTextView"
+            android:id="@+id/heightEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Height" />
@@ -81,7 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/weightTextView"
+            android:id="@+id/weightEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Weight" />
@@ -98,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/birthdateTextView"
+            android:id="@+id/birthdateEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Brithdate" />
@@ -115,7 +115,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nationalityTextView"
+            android:id="@+id/nationalityEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nationality" />
@@ -132,7 +132,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/jerseyNumberTextView"
+            android:id="@+id/jerseyNumberEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Jersey Number" />
@@ -149,14 +149,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout8">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/positionTextView"
+            android:id="@+id/positionEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Position" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/createPlayerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit Player"

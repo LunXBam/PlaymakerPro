@@ -31,7 +31,7 @@ class PlayerRecyclerViewAdapter(private val playerList: ArrayList<PlayerModel>):
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.findViewById(R.id.nameTextView)
         val tvNumber: TextView = itemView.findViewById(R.id.numberTextView)
-        val tvPosition: TextView = itemView.findViewById(R.id.positionTextView)
+        val tvPosition: TextView = itemView.findViewById(R.id.positionEditText)
     }
 
 }
