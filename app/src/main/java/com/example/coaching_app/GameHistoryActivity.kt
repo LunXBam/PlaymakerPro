@@ -1,6 +1,7 @@
 package com.example.coaching_app
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,12 @@ class GameHistoryActivity : AppCompatActivity () {
         viewModel.getGameHistory().observe(this) { gameHist ->
             recyclerView.adapter = GameHistoryRecyclerViewAdapter(this, gameHist)
         }
+
+        binding.addGame.setOnClickListener{
+            val intent = Intent(this, CreateGameHistoryActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
     }
