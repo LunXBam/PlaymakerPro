@@ -20,6 +20,9 @@ class EditRosterActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        //supportActionBar?.title = "Edit Roster"
+        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         binding.createPlayerButton.setOnClickListener{
             val firstName = binding.firstNameEditText.text.toString().trim()
             val lastName = binding.lastNameEditText.text.toString().trim()

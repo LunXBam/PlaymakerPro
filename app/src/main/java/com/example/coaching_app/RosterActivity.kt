@@ -19,6 +19,9 @@ class RosterActivity : AppCompatActivity(), PlayerRecyclerViewAdapter.PlayerRecy
         val view = binding.root
         setContentView(view)
 
+        //supportActionBar?.title = "Team Roster"
+        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         recyclerView = findViewById(R.id.playerListRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
