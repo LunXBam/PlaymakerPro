@@ -13,13 +13,17 @@
         android:theme="@style/Theme.Coaching_App"
         tools:targetApi="31">
         <activity
+            android:name=".CreateTeamActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
             android:name=".EditRosterActivity"
             android:exported="false" />
-
         <activity
             android:name=".PlaybookActivity"
             android:exported="false" />
-
         <activity
             android:name=".PlayerActivity"
             android:exported="false" />
@@ -29,26 +33,18 @@
             android:theme="@style/Theme.Coaching_App" />
         <activity
             android:name=".GameHistoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TeamSelectActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".RosterActivity"
             android:exported="true">
-
-        </activity>
-
-        <activity android:name=".RosterActivity"
-            android:exported="true">
-
-
-
-        </activity>
-
-        <activity android:name=".Login"
-            android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

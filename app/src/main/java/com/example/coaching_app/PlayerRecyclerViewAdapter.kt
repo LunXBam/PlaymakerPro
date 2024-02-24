@@ -23,8 +23,9 @@ class PlayerRecyclerViewAdapter(
     override fun onBindViewHolder(holder : MyViewHolder, position: Int) {
         val roster = playerList[position]
         val fullName = roster.firstName + " " + roster.lastName
+        val number = "#" + roster.jerseyNumber
         holder.tvName.text = fullName
-        holder.tvNumber.text = roster.jerseyNumber
+        holder.tvNumber.text = number
         holder.tvPosition.text = roster.playerPosition
     }
 
