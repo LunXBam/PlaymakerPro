@@ -23,11 +23,8 @@ class Login : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
         binding = ActivityLoginBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-
+        setContentView(binding.root)
 
         // Choose authentication providers
         val providers = arrayListOf(
@@ -40,10 +37,10 @@ class Login : AppCompatActivity() {
             .setAvailableProviders(providers)
             .build()
         signInLauncher.launch(signInIntent)
-
     }
 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
+        val response = result.idpResponse
         if (result.resultCode == RESULT_OK) {
             // Successfully signed in
             val user = FirebaseAuth.getInstance().currentUser
