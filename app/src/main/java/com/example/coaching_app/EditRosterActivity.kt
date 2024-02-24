@@ -1,5 +1,6 @@
 package com.example.coaching_app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -47,6 +48,9 @@ class EditRosterActivity : AppCompatActivity() {
                     .addOnFailureListener{
                         it.localizedMessage?.let { it1 -> Log.w("DB issue", it1) }
                     }
+
+                val intent = Intent(this, RosterActivity::class.java)
+                startActivity(intent)
             }
             else{
                 Toast.makeText(this, "First/Last name, Jersey Number, and Position must be filled in",

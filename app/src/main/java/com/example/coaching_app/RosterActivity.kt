@@ -1,5 +1,6 @@
 package com.example.coaching_app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -26,6 +27,13 @@ class RosterActivity : AppCompatActivity(), PlayerRecyclerViewAdapter.PlayerRecy
         val viewModel : RosterViewModel by viewModels()
         viewModel.getRoster().observe(this) { roster ->
             recyclerView.adapter = PlayerRecyclerViewAdapter(roster, this)
+        }
+
+        val editRosterButton = binding.editRosterButton
+
+        editRosterButton.setOnClickListener{
+            val intent = Intent(this, EditRosterActivity::class.java)
+            startActivity(intent)
         }
     }
 
