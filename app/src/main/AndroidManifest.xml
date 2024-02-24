@@ -32,12 +32,12 @@
             android:exported="true"
             android:theme="@style/Theme.Coaching_App" />
         <activity
-            android:name=".RosterActivity"
+            android:name=".GameHistoryActivity"
             android:exported="true">
 
         </activity>
 
-        <activity android:name=".GameHistoryActivity"
+        <activity android:name=".RosterActivity"
             android:exported="true">
 
             <intent-filter>

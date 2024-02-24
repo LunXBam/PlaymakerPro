@@ -2,18 +2,14 @@ package com.example.coaching_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityRosterBinding
 
-class RosterActivity : AppCompatActivity(){
+class RosterActivity : AppCompatActivity(), PlayerRecyclerViewAdapter.PlayerRecyclerViewEvent {
     private lateinit var binding: ActivityRosterBinding
     private lateinit var recyclerView: RecyclerView
-    private lateinit var playerList : ArrayList<PlayerModel>
-    private lateinit var nameList:Array<String>
-    private lateinit var numList:Array<String>
-    private lateinit var posList:Array<String>
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,19 +22,14 @@ class RosterActivity : AppCompatActivity(){
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        playerList = arrayListOf<PlayerModel>()
 
-        loadData()
+        val viewModel : RosterViewModel by viewModels()
+        viewModel.getRoster().observe(this) { roster ->
+            recyclerView.adapter = PlayerRecyclerViewAdapter(roster, this)
+        }
     }
 
-    private fun loadData(){
-        nameList = resources.getStringArray(R.array.player_names)
-        numList = resources.getStringArray(R.array.player_numbers)
-        posList = resources.getStringArray(R.array.player_positions)
+    override fun onItemClick(position: Int) {
 
-        for(i in nameList.indices){
-            playerList.add(PlayerModel(nameList[i].toString(),"#" + numList[i].toString(),posList[i].toString()))
-        }
-        recyclerView.adapter = PlayerRecyclerViewAdapter(playerList)
     }
 }

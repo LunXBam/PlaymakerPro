@@ -6,7 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class PlayerRecyclerViewAdapter(private val playerList: ArrayList<PlayerModel>):RecyclerView.Adapter<PlayerRecyclerViewAdapter.MyViewHolder>() {
+class PlayerRecyclerViewAdapter(
+    private val playerList: List<PlayerModel>,
+    private val listener: PlayerRecyclerViewEvent)
+    :RecyclerView.Adapter<PlayerRecyclerViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -18,20 +21,39 @@ class PlayerRecyclerViewAdapter(private val playerList: ArrayList<PlayerModel>):
     }
 
     override fun onBindViewHolder(holder : MyViewHolder, position: Int) {
-        val currentItem = playerList[position]
-        holder.tvName.text = currentItem.fName
-        holder.tvNumber.text = currentItem.num
-        holder.tvPosition.text = currentItem.pos
+        val roster = playerList[position]
+
+        holder.tvName.text = roster.lastName
+        holder.tvNumber.text = roster.jerseyNumber
+        holder.tvPosition.text = roster.playerPosition
     }
 
     override fun getItemCount(): Int {
         return playerList.size
     }
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+
         val tvName: TextView = itemView.findViewById(R.id.nameTextView)
         val tvNumber: TextView = itemView.findViewById(R.id.numberTextView)
         val tvPosition: TextView = itemView.findViewById(R.id.positionEditText)
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            val position = bindingAdapterPosition
+            if(position != RecyclerView.NO_POSITION){
+                listener.onItemClick(position)
+            }
+        }
     }
+
+    interface PlayerRecyclerViewEvent{
+        fun onItemClick(position: Int)
+    }
+
 
 }
