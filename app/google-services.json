@@ -12,7 +12,20 @@
           "package_name": "com.example.coaching_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "437331363686-lla7ig0bgb4rjkponb80e4nmcp9p1d5t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.coaching_app",
+            "certificate_hash": "0e635daeccd3627b1cc474b60f5a210eafafb9db"
+          }
+        },
+        {
+          "client_id": "437331363686-dcesb64s7pi7i125qhiinbagn8seg1ij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB6FCrYfKEqUMJxVyl_JsDJikfr2PhPcVU"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437331363686-dcesb64s7pi7i125qhiinbagn8seg1ij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
