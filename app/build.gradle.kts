@@ -73,9 +73,12 @@ dependencies {
 
     //Required for RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.2")
-    implementation("com.google.firebase:firebase-firestore:24.10.2")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+
+    // Firebase dependencies
+    implementation("com.google.firebase:firebase-firestore:24.10.2")
+    implementation ("com.firebaseui:firebase-ui-auth:7.2.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
