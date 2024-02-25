@@ -3,7 +3,6 @@ package com.example.coaching_app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.coaching_app.databinding.ActivityLoginBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -40,11 +39,9 @@ class Login : AppCompatActivity() {
     }
 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
-        val response = result.idpResponse
         if (result.resultCode == RESULT_OK) {
             // Successfully signed in
             val user = FirebaseAuth.getInstance().currentUser
-            // if successful take them to the main activity
             val intent = Intent(this,MainActivity::class.java)
             intent.putExtra("user",user)
             startActivity(intent)
@@ -53,10 +50,8 @@ class Login : AppCompatActivity() {
             // Sign in failed. If response is null the user canceled the
             // sign-in flow using the back button. Otherwise check
             // response.getError().getErrorCode() and handle the error.
-            // ...
-            Toast.makeText(this,"Signin Failed", Toast.LENGTH_LONG).show()
-            // if signin fails take them back to the login activity
-            startActivity(Intent(this, Login::class.java))
+            val intent = Intent(this,Login::class.java)
+            startActivity(intent)
         }
     }
 }

@@ -79,6 +79,9 @@ dependencies {
     // Firebase dependencies
     implementation("com.google.firebase:firebase-firestore:24.10.2")
     implementation ("com.firebaseui:firebase-ui-auth:7.2.0")
+    implementation("com.google.firebase:firebase-auth:22.3.1")
+    implementation ("com.google.firebase:firebase-common-ktx:20.0.0")
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
