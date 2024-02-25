@@ -42,8 +42,8 @@ class Login : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             // Successfully signed in
             val user = FirebaseAuth.getInstance().currentUser
-            val intent = Intent(this,MainActivity::class.java)
-            intent.putExtra("user",user)
+            val intent = Intent(this,TeamSelectActivity::class.java)
+            intent.putExtra("userID",user)
             startActivity(intent)
             // ...
         } else {

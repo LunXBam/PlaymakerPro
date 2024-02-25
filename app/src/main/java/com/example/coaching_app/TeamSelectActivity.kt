@@ -22,6 +22,9 @@ class TeamSelectActivity : AppCompatActivity(), TeamSelectRecyclerViewAdapter.Te
         //supportActionBar?.title = "Team Roster"
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val bundle: Bundle? = intent.extras
+        val userID: String? = intent.getStringExtra("userID")
+
         recyclerView = findViewById(R.id.teamListRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
