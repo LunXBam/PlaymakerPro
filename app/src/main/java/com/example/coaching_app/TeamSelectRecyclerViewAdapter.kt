@@ -25,9 +25,9 @@ class TeamSelectRecyclerViewAdapter(
 
         override fun onBindViewHolder(holder : MyViewHolder, position: Int) {
             val teams = teamList[position]
-            //val imageBytes = Base64.decode(teams.logo, Base64.DEFAULT)
-            //val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-            //holder.ivLogo.setImageBitmap(decodedImage)
+            val imageBytes = Base64.decode(teams.logo, Base64.DEFAULT)
+            val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+            holder.ivLogo.setImageBitmap(decodedImage)
             holder.tvTeamName.text = teams.teamName
         }
 
@@ -38,7 +38,7 @@ class TeamSelectRecyclerViewAdapter(
         inner class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
 
-            //val ivLogo: ImageView = itemView.findViewById(R.id.teamLogoImageView)
+            val ivLogo: ImageView = itemView.findViewById(R.id.teamLogoImageView)
             val tvTeamName: TextView = itemView.findViewById(R.id.teamNameTextView)
 
             init {
