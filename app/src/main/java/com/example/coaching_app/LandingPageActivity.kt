@@ -1,15 +1,13 @@
 package com.example.coaching_app
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityLandingPageBinding
-import com.example.coaching_app.databinding.ActivityRosterBinding
 
-class LandingPageActivity : AppCompatActivity() {
+class LandingPageActivity : DrawerBaseActivity() {
 
     private lateinit var binding: ActivityLandingPageBinding
     private lateinit var recyclerView: RecyclerView

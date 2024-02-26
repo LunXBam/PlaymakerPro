@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Coaching_App</string>
+    <string name="app_name">Playmaker Pro</string>
     <string-array name="player_names">
         <item>Messi</item>
         <item>Sergio Busquets</item>
@@ -84,5 +84,6 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-
+    <string name="menu_drawer_open">Drawer Open</string>
+    <string name="menu_drawer_close">Drawer Close</string>
 </resources>

@@ -4,12 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.GameHistoryBinding
 
-class GameHistoryActivity : AppCompatActivity () {
+class GameHistoryActivity : DrawerBaseActivity() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var binding: GameHistoryBinding

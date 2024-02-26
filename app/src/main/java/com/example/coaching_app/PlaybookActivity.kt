@@ -1,13 +1,11 @@
 package com.example.coaching_app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityPlaybookBinding
-import com.example.coaching_app.databinding.ActivityRosterBinding
 
-class PlaybookActivity : AppCompatActivity() {
+class PlaybookActivity : DrawerBaseActivity() {
 
     private lateinit var binding: ActivityPlaybookBinding
     private lateinit var recyclerView: RecyclerView
