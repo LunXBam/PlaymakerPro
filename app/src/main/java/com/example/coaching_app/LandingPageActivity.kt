@@ -21,6 +21,12 @@ class LandingPageActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        val bundle: Bundle? = intent.extras
+        val teamID: String? = intent.getStringExtra("teamID")
+
+        val title = binding.nameLandingTextView
+        title.text = teamID
+
         recyclerView = findViewById(R.id.gameLandingRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)

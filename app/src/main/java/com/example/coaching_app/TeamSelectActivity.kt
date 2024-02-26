@@ -38,7 +38,10 @@ class TeamSelectActivity : AppCompatActivity() {
             recyclerView.adapter = adapter
             adapter.setOnItemClickListener(object : TeamSelectRecyclerViewAdapter.onItemClickListener{
                 override fun onItemClick(position: Int) {
-                    Toast.makeText(this@TeamSelectActivity,teams[position].teamName,Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this@TeamSelectActivity,teams[position].teamName,Toast.LENGTH_LONG).show()
+                    val myIntent = Intent(this@TeamSelectActivity, LandingPageActivity::class.java)
+                    myIntent.putExtra("teamID",teams[position].teamID)
+                    startActivity(myIntent)
                 }
 
             })
