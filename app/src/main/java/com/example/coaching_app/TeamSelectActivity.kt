@@ -3,12 +3,13 @@ package com.example.coaching_app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityTeamSelectBinding
 
-class TeamSelectActivity : AppCompatActivity(), TeamSelectRecyclerViewAdapter.TeamRecyclerViewEvent {
+class TeamSelectActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTeamSelectBinding
     private lateinit var recyclerView: RecyclerView
 
@@ -30,10 +31,20 @@ class TeamSelectActivity : AppCompatActivity(), TeamSelectRecyclerViewAdapter.Te
         recyclerView.setHasFixedSize(true)
 
 
+
         val viewModel : TeamSelectViewModel by viewModels()
         viewModel.getTeams().observe(this) { teams ->
-            recyclerView.adapter = TeamSelectRecyclerViewAdapter(teams, this)
+            val adapter = TeamSelectRecyclerViewAdapter(teams)
+            recyclerView.adapter = adapter
+            adapter.setOnItemClickListener(object : TeamSelectRecyclerViewAdapter.onItemClickListener{
+                override fun onItemClick(position: Int) {
+                    Toast.makeText(this@TeamSelectActivity,teams[position].teamName,Toast.LENGTH_LONG).show()
+                }
+
+            })
         }
+
+
 
         val newTeamButton = binding.newTeamButton
 
@@ -41,9 +52,5 @@ class TeamSelectActivity : AppCompatActivity(), TeamSelectRecyclerViewAdapter.Te
             val intent = Intent(this, CreateTeamActivity::class.java)
             startActivity(intent)
         }
-    }
-
-    override fun onItemClick(position: Int) {
-
     }
 }
