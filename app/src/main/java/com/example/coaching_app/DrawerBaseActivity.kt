@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.firebase.ui.auth.AuthUI
 import com.google.android.material.navigation.NavigationView
 
 open class DrawerBaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -61,6 +63,17 @@ open class DrawerBaseActivity : AppCompatActivity(), NavigationView.OnNavigation
             }
             R.id.nav_playbook -> {
                 startActivity(Intent(this, PlaybookActivity::class.java))
+            }
+            R.id.nav_logout ->{
+                AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnSuccessListener{
+                        startActivity(Intent(this,Login::class.java))
+
+                    }.addOnFailureListener {
+                        Toast.makeText(this,"Didn't work", Toast.LENGTH_LONG).show()
+                    }
+
             }
         }
         return true
