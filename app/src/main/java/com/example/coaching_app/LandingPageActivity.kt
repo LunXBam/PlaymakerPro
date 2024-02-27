@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityLandingPageBinding
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LandingPageActivity : DrawerBaseActivity() {
 
@@ -32,8 +33,17 @@ class LandingPageActivity : DrawerBaseActivity() {
 
         val viewModel : GameHistViewModel by viewModels()
         viewModel.getGameHistory().observe(this) { gameHist ->
-            recyclerView.adapter = GameHistoryRecyclerViewAdapter(this, gameHist)
+            recyclerView.adapter = GameHistoryRecyclerViewAdapter(this, gameHist, selectedTeam)
         }
+
+  /*      val db = FirebaseFirestore.getInstance().collection("game_history")
+        db.whereEqualTo("teamID", selectedTeam?.teamID)
+            .get()
+            .addOnSuccessListener { querySnapShot ->
+                for(document in querySnapShot){
+
+                }
+            } */
 
         binding.landingToRosterButton.setOnClickListener{
             val intent = Intent(this, RosterActivity::class.java)

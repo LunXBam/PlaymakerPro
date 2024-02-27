@@ -11,7 +11,8 @@ import android.widget.TextView
 
 class GameHistoryRecyclerViewAdapter(
     val context: Context,
-    val listItems: List<GameHistory>): RecyclerView.Adapter<GameHistoryRecyclerViewAdapter.GameHistViewHolder>() {
+    private val listItems: List<GameHistory>,
+    private val selectedTeam: Team?): RecyclerView.Adapter<GameHistoryRecyclerViewAdapter.GameHistViewHolder>() {
 
     inner class GameHistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val opponent = itemView.findViewById<TextView>(R.id.oppTeamName)
@@ -31,19 +32,14 @@ class GameHistoryRecyclerViewAdapter(
     override fun onBindViewHolder(holder: GameHistViewHolder, position: Int) {
         val gameHist = listItems[position]
 
-
-        with(holder){
-            opponent.text = gameHist.opponent
-            gameResult.text = gameHist.result
-            date.text = gameHist.gameDate
-            score.text = (gameHist.ourScore + " - " + gameHist.opponentScore )
-
-
-
+        if(gameHist.teamID == selectedTeam?.teamID){
+            with(holder) {
+                opponent.text = gameHist.opponent
+                gameResult.text = gameHist.result
+                date.text = gameHist.gameDate
+                score.text = (gameHist.ourScore + " - " + gameHist.opponentScore)
+            }
         }
-
-
-
     }
 
     override fun getItemCount(): Int {

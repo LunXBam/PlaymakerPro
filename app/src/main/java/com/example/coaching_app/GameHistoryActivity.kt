@@ -26,12 +26,12 @@ class GameHistoryActivity : DrawerBaseActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-
+        val selectedTeam = Team("Eagles","Soccer","Cool City", "Red and Green",null,null,null)
 
 
        val viewModel : GameHistViewModel by viewModels()
         viewModel.getGameHistory().observe(this) { gameHist ->
-            recyclerView.adapter = GameHistoryRecyclerViewAdapter(this, gameHist)
+            recyclerView.adapter = GameHistoryRecyclerViewAdapter(this, gameHist, selectedTeam)
         }
 
         binding.addGame.setOnClickListener{
