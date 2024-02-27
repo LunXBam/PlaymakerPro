@@ -13,16 +13,21 @@
         android:theme="@style/Theme.Coaching_App"
         tools:targetApi="31">
         <activity
+            android:name=".createStatsActivity"
+            android:exported="false" />
+        <activity
             android:name=".DrawerBaseActivity"
             android:exported="false" />
         <activity
             android:name=".Login"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".TeamSelectActivity"
@@ -52,18 +57,17 @@
         <activity
             android:name=".GameHistoryActivity"
             android:exported="true" />
-        <activity android:name=".CreateGameHistoryActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".CreateGameHistoryActivity"
+            android:exported="true" />
         <activity
             android:name=".DashboardActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

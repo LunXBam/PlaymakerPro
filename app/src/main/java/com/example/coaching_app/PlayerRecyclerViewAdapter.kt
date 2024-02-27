@@ -39,9 +39,6 @@ class PlayerRecyclerViewAdapter(
             holder.tvNumber.text = number
             holder.tvPosition.text = roster.playerPosition
         }
-        //else{
-        //    playerList.drop(position)
-        //}
     }
 
     override fun getItemCount(): Int {
