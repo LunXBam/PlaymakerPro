@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 
 
 class GameHistoryRecyclerViewAdapter(
@@ -15,11 +17,11 @@ class GameHistoryRecyclerViewAdapter(
     private val selectedTeam: Team?): RecyclerView.Adapter<GameHistoryRecyclerViewAdapter.GameHistViewHolder>() {
 
     inner class GameHistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
         val opponent = itemView.findViewById<TextView>(R.id.oppTeamName)
         val score = itemView.findViewById<TextView>(R.id.score)
         val gameResult = itemView.findViewById<TextView>(R.id.result)
         val date = itemView.findViewById<TextView>(R.id.gameDay)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameHistViewHolder {

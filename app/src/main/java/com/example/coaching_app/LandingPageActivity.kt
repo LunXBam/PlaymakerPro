@@ -47,16 +47,19 @@ class LandingPageActivity : DrawerBaseActivity() {
 
         binding.landingToRosterButton.setOnClickListener{
             val intent = Intent(this, RosterActivity::class.java)
+            intent.putExtra("selectedTeam",selectedTeam)
             startActivity(intent)
         }
 
         binding.landingToGamesButton.setOnClickListener{
             val intent = Intent(this, GameHistoryActivity::class.java)
+            intent.putExtra("selectedTeam",selectedTeam)
             startActivity(intent)
         }
 
         binding.landingToPlaysButton.setOnClickListener{
             val intent = Intent(this, PlaybookActivity::class.java)
+            intent.putExtra("selectedTeam",selectedTeam)
             startActivity(intent)
         }
 

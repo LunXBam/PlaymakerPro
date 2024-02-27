@@ -26,7 +26,8 @@ class GameHistoryActivity : DrawerBaseActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        val selectedTeam = Team("Eagles","Soccer","Cool City", "Red and Green",null,null,null)
+        val bundle: Bundle? = intent.extras
+        val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
 
 
        val viewModel : GameHistViewModel by viewModels()
@@ -36,6 +37,7 @@ class GameHistoryActivity : DrawerBaseActivity() {
 
         binding.addGame.setOnClickListener{
             val intent = Intent(this, CreateGameHistoryActivity::class.java)
+            intent.putExtra("selectedTeam",selectedTeam)
             startActivity(intent)
         }
 

@@ -10,5 +10,6 @@ data class PlayerModel (
     var jerseyNumber: String? = null,
     var playerPosition: String? = null,
     var playerID: String? = null,
-    var teamID: String? = null
+    var teamID: String? = null,
+    var userID: String? = null
 )

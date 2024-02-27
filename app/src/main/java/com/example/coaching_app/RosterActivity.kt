@@ -21,6 +21,9 @@ class RosterActivity : DrawerBaseActivity(), PlayerRecyclerViewAdapter.PlayerRec
         //supportActionBar?.title = "Team Roster"
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val bundle: Bundle? = intent.extras
+        val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
+
         recyclerView = findViewById(R.id.playerListRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
@@ -28,13 +31,14 @@ class RosterActivity : DrawerBaseActivity(), PlayerRecyclerViewAdapter.PlayerRec
 
         val viewModel : RosterViewModel by viewModels()
         viewModel.getRoster().observe(this) { roster ->
-            recyclerView.adapter = PlayerRecyclerViewAdapter(roster, this)
+            recyclerView.adapter = PlayerRecyclerViewAdapter(roster, this, selectedTeam)
         }
 
         val editRosterButton = binding.editRosterButton
 
         editRosterButton.setOnClickListener{
             val intent = Intent(this, EditRosterActivity::class.java)
+            intent.putExtra("selectedTeam",selectedTeam)
             startActivity(intent)
         }
     }

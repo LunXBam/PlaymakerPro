@@ -9,9 +9,6 @@ class GameHistory (
     var opponentScore: String? = null,
     var venue: String? = null,
     var weather: String? = null,
-    var gameID: String
-){
-
-
-    constructor():this(null,null,null,null,null,null,null,null,"")
-}
+    var gameID: String,
+    var userID: String? = null
+){}

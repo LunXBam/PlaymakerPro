@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class PlayerRecyclerViewAdapter(
     private val playerList: List<PlayerModel>,
-    private val listener: PlayerRecyclerViewEvent)
+    private val listener: PlayerRecyclerViewEvent,
+    private val selectedTeam: Team?)
     :RecyclerView.Adapter<PlayerRecyclerViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -22,11 +23,16 @@ class PlayerRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder : MyViewHolder, position: Int) {
         val roster = playerList[position]
-        val fullName = roster.firstName + " " + roster.lastName
-        val number = "#" + roster.jerseyNumber
-        holder.tvName.text = fullName
-        holder.tvNumber.text = number
-        holder.tvPosition.text = roster.playerPosition
+        if(roster.teamID == selectedTeam?.teamID) {
+            val fullName = roster.firstName + " " + roster.lastName
+            val number = "#" + roster.jerseyNumber
+            holder.tvName.text = fullName
+            holder.tvNumber.text = number
+            holder.tvPosition.text = roster.playerPosition
+        }
+        //else{
+        //    playerList.drop(position)
+        //}
     }
 
     override fun getItemCount(): Int {

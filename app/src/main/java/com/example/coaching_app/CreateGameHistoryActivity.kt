@@ -22,6 +22,9 @@ class CreateGameHistoryActivity : AppCompatActivity() {
         binding = ActivityCreateGameHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val bundle: Bundle? = intent.extras
+        val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
+
         binding.createGameHist.setOnClickListener{
             val oppName = binding.opponentEditText.text.toString().trim()
             val oppScore = binding.oppScoreEditText.text.toString().trim()
@@ -37,12 +40,14 @@ class CreateGameHistoryActivity : AppCompatActivity() {
                 // initalized db
                 val db = FirebaseFirestore.getInstance().collection("game_history")
 
-                val id = db.document().id
+                val gameID = db.document().id
+                val userID = FirebaseAuth.getInstance().currentUser?.uid
+                val teamID = selectedTeam?.teamID
 
                 // create the new game history
-                val gameHist = GameHistory("1",gameDate,oppName,result,ourScore,oppScore,venue,weather,id )
+                val gameHist = GameHistory(teamID,gameDate,oppName,result,ourScore,oppScore,venue,weather,gameID,userID )
 
-                db.document(id).set(gameHist)
+                db.document(gameID).set(gameHist)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Game History Successfully Created",
                             Toast.LENGTH_LONG).show() }
@@ -51,6 +56,7 @@ class CreateGameHistoryActivity : AppCompatActivity() {
                     }
 
                 val intent = Intent(this, GameHistoryActivity::class.java)
+                intent.putExtra("selectedTeam",selectedTeam)
                 startActivity(intent)
             }
 
@@ -58,19 +64,12 @@ class CreateGameHistoryActivity : AppCompatActivity() {
                 Toast.makeText(this, "All fields must be filled in!!!!",
                     Toast.LENGTH_LONG).show()
             }
-
-
         }
-
 
         binding.goBack.setOnClickListener{
             val intent = Intent(this, GameHistoryActivity::class.java)
+            intent.putExtra("selectedTeam",selectedTeam)
             startActivity(intent)
         }
-
-
-
     }
-
-
 }

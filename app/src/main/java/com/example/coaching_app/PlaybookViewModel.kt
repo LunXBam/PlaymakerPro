@@ -1,24 +1,20 @@
 package com.example.coaching_app
 
-
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
-class GameHistViewModel () : ViewModel() {
-    private val gameHistories = MutableLiveData<List<GameHistory>>()
+class PlaybookViewModel : ViewModel() {
+    private val playbookData = MutableLiveData<List<PlaybookModel>>()
 
     init {
 
         val userID = FirebaseAuth.getInstance().currentUser?.uid
 
-        val db = FirebaseFirestore.getInstance().collection("game_history")
+        val db = FirebaseFirestore.getInstance().collection("play_book")
             .whereEqualTo("userID", userID)
             .addSnapshotListener{ documents,exception ->
                 if(exception != null){
@@ -26,19 +22,19 @@ class GameHistViewModel () : ViewModel() {
                     return@addSnapshotListener
                 }
                 documents?.let {
-                    val gameHistList = ArrayList<GameHistory>()
+                    val playbookList = ArrayList<PlaybookModel>()
                     for(document in documents){
                         Log.i("Successful", "${document.data}")
-                        val gameHist = document.toObject(GameHistory::class.java)
-                        gameHistList.add(gameHist)
+                        val play = document.toObject(PlaybookModel::class.java)
+                        playbookList.add(play)
                     }
-                    gameHistories.value = gameHistList
+                    playbookData.value = playbookList
                 }
             }
     }
 
-    // function to return the game history data
-    fun getGameHistory() : LiveData<List<GameHistory>>{
-        return gameHistories
+    // function to return the playbook data
+    fun getPlayBook() : LiveData<List<PlaybookModel>> {
+        return playbookData
     }
 }

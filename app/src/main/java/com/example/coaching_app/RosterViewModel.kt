@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RosterViewModel : ViewModel() {
@@ -11,7 +12,10 @@ class RosterViewModel : ViewModel() {
 
     init {
 
+        val userID = FirebaseAuth.getInstance().currentUser?.uid
+
         val db = FirebaseFirestore.getInstance().collection("players")
+            .whereEqualTo("userID", userID)
             .addSnapshotListener{ documents,exception ->
                 if(exception != null){
                     Log.w("Successful", "Listen Failed ${exception.code}")

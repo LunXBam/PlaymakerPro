@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.example.coaching_app.databinding.ActivityEditRosterBinding
 import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class EditRosterActivity : AppCompatActivity() {
@@ -23,6 +24,9 @@ class EditRosterActivity : AppCompatActivity() {
         //supportActionBar?.title = "Edit Roster"
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val bundle: Bundle? = intent.extras
+        val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
+
         binding.createPlayerButton.setOnClickListener{
             val firstName = binding.firstNameEditText.text.toString().trim()
             val lastName = binding.lastNameEditText.text.toString().trim()
@@ -38,13 +42,15 @@ class EditRosterActivity : AppCompatActivity() {
 
 
                 val db = FirebaseFirestore.getInstance().collection("players")
+                val userID = FirebaseAuth.getInstance().currentUser?.uid
+                val teamID = selectedTeam?.teamID
 
-                val id = db.document().id
+                val playerID = db.document().id
 
                 val player = PlayerModel(firstName, lastName, height, weight,
-                    birthdate, nationality, jerseyNumber, position, id)
+                    birthdate, nationality, jerseyNumber, position, playerID, teamID, userID)
 
-                db.document(id).set(player)
+                db.document(playerID).set(player)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Roster Successfully Updated",
                             Toast.LENGTH_LONG).show() }
@@ -53,6 +59,7 @@ class EditRosterActivity : AppCompatActivity() {
                     }
 
                 val intent = Intent(this, RosterActivity::class.java)
+                intent.putExtra("selectedTeam",selectedTeam)
                 startActivity(intent)
             }
             else{
