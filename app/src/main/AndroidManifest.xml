@@ -52,6 +52,8 @@
         <activity
             android:name=".GameHistoryActivity"
             android:exported="true" />
+        <activity android:name=".CreateGameHistoryActivity"
+            android:exported="true"/>
         <activity
             android:name=".DashboardActivity"
             android:exported="true">

@@ -31,7 +31,7 @@ class LandingPageActivity : DrawerBaseActivity() {
         recyclerView.setHasFixedSize(true)
 
         val viewModel : GameHistViewModel by viewModels()
-        viewModel.getLimitedHistory(selectedTeam).observe(this) { gameHist ->
+        viewModel.getGameHistory().observe(this) { gameHist ->
             recyclerView.adapter = GameHistoryRecyclerViewAdapter(this, gameHist)
         }
 

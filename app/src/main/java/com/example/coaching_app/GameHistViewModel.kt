@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
-class GameHistViewModel (selectedTeam: Team?) : ViewModel() {
+class GameHistViewModel () : ViewModel() {
     private val gameHistories = MutableLiveData<List<GameHistory>>()
 
     init {
@@ -19,7 +19,6 @@ class GameHistViewModel (selectedTeam: Team?) : ViewModel() {
         val userID = FirebaseAuth.getInstance().currentUser?.uid
 
         val db = FirebaseFirestore.getInstance().collection("game_history")
-            .whereEqualTo("teamID", selectedTeam)
             .addSnapshotListener{ documents,exception ->
                 if(exception != null){
                     Log.w("Successful", "Listen Failed ${exception.code}")
@@ -42,12 +41,12 @@ class GameHistViewModel (selectedTeam: Team?) : ViewModel() {
         return gameHistories
     }
 
-    fun getLimitedHistory(selectedTeam : Team?) : LiveData<List<GameHistory>>{
-        return getGameHistory().map { games ->
-            games
-                .filter { game ->
-                    game.teamID == selectedTeam?.teamID
-                }
-        }
-    }
+//    fun getLimitedHistory(selectedTeam : Team?) : LiveData<List<GameHistory>>{
+//        return getGameHistory().map { games ->
+//            games
+//                .filter { game ->
+//                    game.teamID == selectedTeam?.teamID
+//                }
+//        }
+//    }
 }
