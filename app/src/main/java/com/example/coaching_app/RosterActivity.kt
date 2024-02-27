@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityRosterBinding
 
-class RosterActivity : DrawerBaseActivity(), PlayerRecyclerViewAdapter.PlayerRecyclerViewEvent {
+class RosterActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityRosterBinding
     private lateinit var recyclerView: RecyclerView
 
@@ -30,8 +30,17 @@ class RosterActivity : DrawerBaseActivity(), PlayerRecyclerViewAdapter.PlayerRec
 
 
         val viewModel : RosterViewModel by viewModels()
+
         viewModel.getRoster().observe(this) { roster ->
-            recyclerView.adapter = PlayerRecyclerViewAdapter(roster, this, selectedTeam)
+            val adapter = PlayerRecyclerViewAdapter(roster,selectedTeam)
+            recyclerView.adapter = adapter
+            adapter.setOnItemClickListener(object : PlayerRecyclerViewAdapter.onItemClickListener{
+                override fun onItemClick(position: Int) {
+                    val myIntent = Intent(this@RosterActivity, PlayerActivity::class.java)
+                    myIntent.putExtra("selectedPlayer",roster[position])
+                    startActivity(myIntent)
+                }
+            })
         }
 
         val editRosterButton = binding.editRosterButton
@@ -41,9 +50,5 @@ class RosterActivity : DrawerBaseActivity(), PlayerRecyclerViewAdapter.PlayerRec
             intent.putExtra("selectedTeam",selectedTeam)
             startActivity(intent)
         }
-    }
-
-    override fun onItemClick(position: Int) {
-
     }
 }
