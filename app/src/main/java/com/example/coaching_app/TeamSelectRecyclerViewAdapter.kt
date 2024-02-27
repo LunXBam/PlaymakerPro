@@ -7,13 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class TeamSelectRecyclerViewAdapter(
     private val teamList: List<Team>)//,
-    //private val onItemClicked: (Team) -> Unit)
-    //private val listener: TeamRecyclerViewEvent)
     :RecyclerView.Adapter<TeamSelectRecyclerViewAdapter.MyViewHolder>() {
 
     private lateinit var mListener : onItemClickListener
@@ -41,7 +38,6 @@ class TeamSelectRecyclerViewAdapter(
             val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
             holder.ivLogo.setImageBitmap(decodedImage)
             holder.tvTeamName.text = team.teamName
-            //holder.itemView.setOnClickListener{onItemClicked(team)}
         }
 
         override fun getItemCount(): Int {
@@ -59,19 +55,5 @@ class TeamSelectRecyclerViewAdapter(
                     listener.onItemClick(bindingAdapterPosition)
                 }
             }
-            /*
-             override fun onClick(p0: View?) {
-                 val position = bindingAdapterPosition
-                 if(position != RecyclerView.NO_POSITION){
-                     listener.onItemClick(position)
-                 }
-             }
-         }
-
-         interface TeamRecyclerViewEvent{
-             fun onItemClick(position: Int)
-         }
-
- */
         }
 }

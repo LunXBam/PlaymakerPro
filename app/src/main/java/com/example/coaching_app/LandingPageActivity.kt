@@ -12,6 +12,7 @@ class LandingPageActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityLandingPageBinding
     private lateinit var recyclerView: RecyclerView
 
+    @SuppressWarnings("deprecation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing_page)
@@ -20,17 +21,17 @@ class LandingPageActivity : DrawerBaseActivity() {
         setContentView(view)
 
         val bundle: Bundle? = intent.extras
-        val teamID: String? = intent.getStringExtra("teamID")
+        val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
 
         val title = binding.nameLandingTextView
-        title.text = teamID
+        title.text = selectedTeam?.teamName
 
         recyclerView = findViewById(R.id.gameLandingRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
         val viewModel : GameHistViewModel by viewModels()
-        viewModel.getGameHistory().observe(this) { gameHist ->
+        viewModel.getLimitedHistory(selectedTeam).observe(this) { gameHist ->
             recyclerView.adapter = GameHistoryRecyclerViewAdapter(this, gameHist)
         }
 

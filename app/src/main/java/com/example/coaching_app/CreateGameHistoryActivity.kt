@@ -40,7 +40,7 @@ class CreateGameHistoryActivity : AppCompatActivity() {
                 val id = db.document().id
 
                 // create the new game history
-                val gameHist = GameHistory(id,gameDate,oppName,result,ourScore,oppScore,venue,weather,"1" )
+                val gameHist = GameHistory("1",gameDate,oppName,result,ourScore,oppScore,venue,weather,id )
 
                 db.document(id).set(gameHist)
                     .addOnSuccessListener {

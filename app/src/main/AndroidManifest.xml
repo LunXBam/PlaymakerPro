@@ -16,7 +16,7 @@
             android:name=".DrawerBaseActivity"
             android:exported="false" />
         <activity
-            android:name=".DashboardActivity"
+            android:name=".Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,7 +53,7 @@
             android:name=".GameHistoryActivity"
             android:exported="true" />
         <activity
-            android:name=".Login"
+            android:name=".DashboardActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->

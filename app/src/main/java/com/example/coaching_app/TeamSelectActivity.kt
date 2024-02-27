@@ -40,7 +40,7 @@ class TeamSelectActivity : AppCompatActivity() {
                 override fun onItemClick(position: Int) {
                     //Toast.makeText(this@TeamSelectActivity,teams[position].teamName,Toast.LENGTH_LONG).show()
                     val myIntent = Intent(this@TeamSelectActivity, LandingPageActivity::class.java)
-                    myIntent.putExtra("teamID",teams[position].teamID)
+                    myIntent.putExtra("selectedTeam",teams[position])
                     startActivity(myIntent)
                 }
 

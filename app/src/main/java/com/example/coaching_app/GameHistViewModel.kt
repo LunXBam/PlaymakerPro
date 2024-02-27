@@ -4,16 +4,22 @@ package com.example.coaching_app
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
-class GameHistViewModel : ViewModel() {
+class GameHistViewModel (selectedTeam: Team?) : ViewModel() {
     private val gameHistories = MutableLiveData<List<GameHistory>>()
 
     init {
 
+        val userID = FirebaseAuth.getInstance().currentUser?.uid
+
         val db = FirebaseFirestore.getInstance().collection("game_history")
+            .whereEqualTo("teamID", selectedTeam)
             .addSnapshotListener{ documents,exception ->
                 if(exception != null){
                     Log.w("Successful", "Listen Failed ${exception.code}")
@@ -28,9 +34,7 @@ class GameHistViewModel : ViewModel() {
                     }
                     gameHistories.value = gameHistList
                 }
-
             }
-
     }
 
     // function to return the game history data
@@ -38,5 +42,12 @@ class GameHistViewModel : ViewModel() {
         return gameHistories
     }
 
-
+    fun getLimitedHistory(selectedTeam : Team?) : LiveData<List<GameHistory>>{
+        return getGameHistory().map { games ->
+            games
+                .filter { game ->
+                    game.teamID == selectedTeam?.teamID
+                }
+        }
+    }
 }
