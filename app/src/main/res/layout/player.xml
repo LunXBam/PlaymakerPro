@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fullscreen"
-    android:background="@drawable/login_background"
+    android:background="@color/navy"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
-
 
 
     <RelativeLayout
@@ -17,46 +16,71 @@
         tools:layout_editor_absoluteY="16dp">
 
 
-        <ImageView
-            android:id="@+id/playerPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="250sp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/messi" />
+<!--        <ImageView-->
+<!--            android:id="@+id/playerPhoto"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="250sp"-->
+<!--            android:scaleType="fitCenter"-->
+<!--            android:src="@drawable/messi" />-->
 
         <LinearLayout
             android:id="@+id/playerInfoBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/playerPhoto"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:padding="16dp">
 
 
             <TextView
-                android:id="@+id/playerName"
+                android:id="@+id/playerNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name: Lionel Messi"
+                android:text="Name:"
                 android:textColor="@color/yellow"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/TeamName"
+                android:id="@+id/playerNameInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Team: Barcelona"
+                android:text="input"
                 android:textColor="@color/yellow"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/PositionName"
+                android:id="@+id/TeamNameText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Position: Forward"
+                android:text="Team:"
+                android:textColor="@color/yellow"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TeamNameInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Input"
+                android:textColor="@color/yellow"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/PositionNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Position:"
+                android:textColor="@color/yellow"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/PositionNameInput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Input"
                 android:textColor="@color/yellow"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -70,8 +94,8 @@
             android:layout_below="@+id/playerInfoBox"
             android:layout_marginTop="25dp"
 
-            android:layout_marginBottom="-62dp"
-            android:padding="16dp">
+            android:layout_marginBottom="45dp"
+            android:padding="0dp">
 
             <LinearLayout
                 android:id="@+id/statsContentLayout"
@@ -89,36 +113,80 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/WorldCupQualifiers"
+                            android:id="@+id/GoalText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:textColor="@color/yellow"
                             android:layout_marginTop="30dp"
                             android:layout_marginEnd="10dp"
-                            android:text="World Cup Qualifiers"
+                            android:text="Goals:"
+                            android:textColor="@color/yellow"
                             android:textSize="20sp" />
 
                         <TextView
-                            android:id="@+id/Goals"
+                            android:id="@+id/GoalInput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="30dp"
-                            android:textColor="@color/yellow"
                             android:layout_marginEnd="10dp"
-                            android:text="Goals"
+                            android:text="input"
+                            android:textColor="@color/yellow"
                             android:textSize="20sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/Assists"
+                            android:id="@+id/AssistsText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="30dp"
                             android:layout_marginEnd="10dp"
-                            android:textColor="@color/yellow"
                             android:text="Assists"
+                            android:textColor="@color/yellow"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/AssistsInput"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:textColor="@color/yellow"
+                            android:layout_marginEnd="10dp"
+                            android:text="input"
+                            android:textSize="20sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/BlocksText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:textColor="@color/yellow"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="Blocks:"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/BlocksInput"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="10dp"
+                            android:textColor="@color/yellow"
+                            android:text="input"
                             android:textSize="20sp" />
                     </TableRow>
 
@@ -127,112 +195,77 @@
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/years1"
+                            android:id="@+id/FoulText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
+                            android:textColor="@color/yellow"
                             android:layout_marginTop="30dp"
                             android:layout_marginEnd="10dp"
-                            android:textColor="@color/yellow"
-                            android:text="2023-25"
+                            android:text="Fouls:"
                             android:textSize="20sp" />
 
                         <TextView
-                            android:id="@+id/goals1"
+                            android:id="@+id/FoulInput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="30dp"
-                            android:textColor="@color/yellow"
                             android:layout_marginEnd="10dp"
-                            android:text="3"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:id="@+id/assists1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="30dp"
                             android:textColor="@color/yellow"
-                            android:layout_marginEnd="10dp"
-                            android:text="0"
+                            android:text="input"
                             android:textSize="20sp" />
                     </TableRow>
-
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/name3"
+                            android:id="@+id/TacklesText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:textColor="@color/yellow"
                             android:layout_marginTop="30dp"
                             android:layout_marginEnd="10dp"
-                            android:text="2020-22"
+                            android:text="Tackles:"
                             android:textSize="20sp" />
 
                         <TextView
-                            android:id="@+id/number3"
+                            android:id="@+id/TacklesInput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="30dp"
                             android:layout_marginEnd="10dp"
                             android:textColor="@color/yellow"
-                            android:text="15"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:id="@+id/position3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="30dp"
-                            android:textColor="@color/yellow"
-                            android:layout_marginEnd="10dp"
-                            android:text="0"
+                            android:text="input"
                             android:textSize="20sp" />
                     </TableRow>
-
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/name4"
+                            android:id="@+id/ShotsText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
+                            android:textColor="@color/yellow"
                             android:layout_marginTop="30dp"
                             android:layout_marginEnd="10dp"
-                            android:textColor="@color/yellow"
-                            android:text="2015-2017"
+                            android:text="Shots:"
                             android:textSize="20sp" />
 
                         <TextView
-                            android:id="@+id/number4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="30dp"
-                            android:textColor="@color/yellow"
-                            android:layout_marginEnd="10dp"
-                            android:text="10"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:id="@+id/position4"
+                            android:id="@+id/ShotsInput"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="30dp"
                             android:layout_marginEnd="10dp"
                             android:textColor="@color/yellow"
-                            android:text="2"
+                            android:text="input"
                             android:textSize="20sp" />
                     </TableRow>
 
@@ -241,6 +274,27 @@
             </LinearLayout>
 
         </ScrollView>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:id="@+id/editStatButton"
+            android:layout_above="@+id/bottomSpacer"
+            android:layout_marginLeft="10dp"
+            />
+
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/bottomSpacer"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:text="Back" />
+
+
 
         <View
             android:id="@+id/bottomSpacer"
