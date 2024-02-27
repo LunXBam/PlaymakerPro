@@ -75,6 +75,9 @@ open class DrawerBaseActivity : AppCompatActivity(), NavigationView.OnNavigation
                     }
 
             }
+            R.id.nav_team_select ->{
+                startActivity(Intent(this,TeamSelectActivity::class.java))
+            }
         }
         return true
     }
