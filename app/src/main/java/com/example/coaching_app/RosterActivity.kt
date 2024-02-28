@@ -28,6 +28,7 @@ class RosterActivity : DrawerBaseActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
+        binding.textView.text = selectedTeam?.teamName
 
         val viewModel : RosterViewModel by viewModels()
 

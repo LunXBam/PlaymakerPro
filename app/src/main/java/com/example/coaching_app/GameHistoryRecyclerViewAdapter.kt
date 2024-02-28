@@ -34,14 +34,14 @@ class GameHistoryRecyclerViewAdapter(
     override fun onBindViewHolder(holder: GameHistViewHolder, position: Int) {
         val gameHist = listItems[position]
 
-        if(gameHist.teamID == selectedTeam?.teamID){
-            with(holder) {
-                opponent.text = gameHist.opponent
-                gameResult.text = gameHist.result
-                date.text = gameHist.gameDate
-                score.text = (gameHist.ourScore + " - " + gameHist.opponentScore)
-            }
+        //if(gameHist.teamID == selectedTeam?.teamID){
+        with(holder) {
+            opponent.text = gameHist.opponent
+            gameResult.text = gameHist.result
+            date.text = gameHist.gameDate
+            score.text = (gameHist.ourScore + " - " + gameHist.opponentScore)
         }
+        //}
     }
 
     override fun getItemCount(): Int {

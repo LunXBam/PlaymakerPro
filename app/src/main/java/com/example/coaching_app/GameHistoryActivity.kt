@@ -29,6 +29,7 @@ class GameHistoryActivity : DrawerBaseActivity() {
         val bundle: Bundle? = intent.extras
         val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
 
+        binding.TeamName.text = selectedTeam?.teamName
 
        val viewModel : GameHistViewModel by viewModels()
         viewModel.getGameHistory().observe(this) { gameHist ->
@@ -43,6 +44,7 @@ class GameHistoryActivity : DrawerBaseActivity() {
 
         binding.goBack.setOnClickListener{
             val intent = Intent(this,LandingPageActivity::class.java)
+            intent.putExtra("selectedTeam",selectedTeam)
             startActivity(intent)
         }
 

@@ -25,12 +25,10 @@ class PlaybookRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder : PlayViewHolder, position: Int) {
         val currentItem = playList[position]
-        if(currentItem.teamID == selectedTeam?.teamID) {
-            val imageBytes = Base64.decode(currentItem.playImage, Base64.DEFAULT)
-            val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-            holder.playImage.setImageBitmap(decodedImage)
-            holder.playTitle.text = currentItem.playTitle
-        }
+        val imageBytes = Base64.decode(currentItem.playImage, Base64.DEFAULT)
+        val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+        holder.playImage.setImageBitmap(decodedImage)
+        holder.playTitle.text = currentItem.playTitle
     }
 
     override fun getItemCount(): Int {

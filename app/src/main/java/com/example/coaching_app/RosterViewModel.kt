@@ -13,9 +13,10 @@ class RosterViewModel : ViewModel() {
     init {
 
         val userID = FirebaseAuth.getInstance().currentUser?.uid
+        val recievedData = DataRepo.sharedData
 
         val db = FirebaseFirestore.getInstance().collection("players")
-            .whereEqualTo("userID", userID)
+            .whereEqualTo("teamID", recievedData?.teamID)
             .addSnapshotListener{ documents,exception ->
                 if(exception != null){
                     Log.w("Successful", "Listen Failed ${exception.code}")
