@@ -69,7 +69,8 @@ class createStatsActivity : AppCompatActivity() {
 
 
         binding.backButton.setOnClickListener {
-            val intent = Intent(this, PlaybookActivity::class.java)
+            val intent = Intent(this, PlayerActivity::class.java)
+            intent.putExtra("selectedPlayer", selectedPlayer)
             startActivity(intent)
         }
 
