@@ -1,6 +1,10 @@
 package com.example.coaching_app
 
-class GameHistory (
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class GameHistory (
     var teamID: String? = null,
     var gameDate: String? = null,
     var opponent: String? = null,
@@ -11,4 +15,5 @@ class GameHistory (
     var weather: String? = null,
     var gameID: String? = null,
     var userID: String? = null
-){}
+): Parcelable {
+}

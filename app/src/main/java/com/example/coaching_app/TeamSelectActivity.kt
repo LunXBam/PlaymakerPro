@@ -1,10 +1,9 @@
 package com.example.coaching_app
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityTeamSelectBinding
@@ -40,7 +39,10 @@ class TeamSelectActivity : AppCompatActivity() {
                 override fun onItemClick(position: Int) {
                     //Toast.makeText(this@TeamSelectActivity,teams[position].teamName,Toast.LENGTH_LONG).show()
                     val myIntent = Intent(this@TeamSelectActivity, LandingPageActivity::class.java)
+
                     myIntent.putExtra("selectedTeam",teams[position])
+                    val datashare = teams[position]
+                    DataRepo.sharedData = datashare
                     startActivity(myIntent)
                 }
 

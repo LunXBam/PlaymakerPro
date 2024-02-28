@@ -49,20 +49,36 @@ open class DrawerBaseActivity : AppCompatActivity(), NavigationView.OnNavigation
 //        return false
 //    }
 
+
+
+    val recievedData = DataRepo.sharedData
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         drawerLayout.closeDrawer(GravityCompat.START)
         when (item.itemId) {
             R.id.nav_home -> {
-                startActivity(Intent(this, LandingPageActivity::class.java))
+
+                val intent = Intent(this, LandingPageActivity::class.java)
+                intent.putExtra("selectedTeam", recievedData)
+                startActivity(intent)
+//                startActivity(Intent(this, LandingPageActivity::class.java))
             }
             R.id.nav_team -> {
-                startActivity(Intent(this, RosterActivity::class.java))
+                val intent = Intent(this, RosterActivity::class.java)
+                intent.putExtra("selectedTeam", recievedData)
+                startActivity(intent)
+//                startActivity(Intent(this, RosterActivity::class.java))
             }
             R.id.nav_history -> {
-                startActivity(Intent(this, GameHistoryActivity::class.java))
+                val intent = Intent(this, GameHistoryActivity::class.java)
+                intent.putExtra("selectedTeam", recievedData)
+                startActivity(intent)
+//                startActivity(Intent(this, GameHistoryActivity::class.java))
             }
             R.id.nav_playbook -> {
-                startActivity(Intent(this, PlaybookActivity::class.java))
+                val intent = Intent(this, PlaybookActivity::class.java)
+                intent.putExtra("selectedTeam", recievedData)
+                startActivity(intent)
+//                startActivity(Intent(this, PlaybookActivity::class.java))
             }
             R.id.nav_logout ->{
                 AuthUI.getInstance()

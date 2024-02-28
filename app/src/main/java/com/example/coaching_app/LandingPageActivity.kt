@@ -6,7 +6,6 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityLandingPageBinding
-import com.google.firebase.firestore.FirebaseFirestore
 
 class LandingPageActivity : DrawerBaseActivity() {
 
