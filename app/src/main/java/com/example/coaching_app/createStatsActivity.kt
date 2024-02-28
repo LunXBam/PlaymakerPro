@@ -43,9 +43,10 @@ class createStatsActivity : AppCompatActivity() {
 
                 val statID = db.document().id
                 val playerID = selectedPlayer?.playerID
+                val teamID = selectedPlayer?.teamID
 
                 val stat = StatsModel(assists,blocks,fouls,gamesPlayed,goals,
-                injured,playerID,redCards,shots,statID,tackles,yellowCards)
+                injured,playerID,redCards,shots,statID,tackles,yellowCards,teamID)
 
                 db.document(statID).set(stat)
                     .addOnSuccessListener {

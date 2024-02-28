@@ -17,6 +17,7 @@ class StatsModel(
     var shots : String? = null,
     var statsID : String? = null,
     var tackles : String? = null,
-    var yellowCards: String? = null
+    var yellowCards: String? = null,
+    var teamID: String? = null
 
 ):Parcelable{}
