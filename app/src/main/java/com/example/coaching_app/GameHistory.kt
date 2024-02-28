@@ -9,6 +9,6 @@ class GameHistory (
     var opponentScore: String? = null,
     var venue: String? = null,
     var weather: String? = null,
-    var gameID: String,
+    var gameID: String? = null,
     var userID: String? = null
 ){}

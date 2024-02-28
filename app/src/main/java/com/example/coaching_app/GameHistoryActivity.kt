@@ -41,6 +41,11 @@ class GameHistoryActivity : DrawerBaseActivity() {
             startActivity(intent)
         }
 
+        binding.goBack.setOnClickListener{
+            val intent = Intent(this,LandingPageActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
     }
