@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/navy"
-    tools:context=".CreateTeamActivity">
-
+    tools:context=".CreatePlaybookActivity">
 
     <TextView
         android:id="@+id/pageTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Create New Team"
+        android:text="Upload New Play"
         android:textSize="20sp"
         android:textColor="@color/yellow"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,73 +30,41 @@
         app:layout_constraintTop_toBottomOf="@id/pageTitleTextView">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/teamNameEditText"
+            android:id="@+id/playNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Team Name" />
+            android:hint="Play Name" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout2"
+        android:id="@+id/textInputLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/yellow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/sportEditText"
+            android:id="@+id/playDescriptionEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Sport" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="Play Description" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/yellow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/cityEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="City" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/yellow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/colorsEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Team Colors" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/createTeamButton"
+        android:id="@+id/createPlayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Submit Team"
+        android:text="Upload Play"
         android:textColor="@color/navy"
         android:backgroundTint="@color/yellow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

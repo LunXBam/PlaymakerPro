@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.coaching_app.databinding.ActivityCreateTeamBinding
-import com.example.coaching_app.databinding.ActivityEditRosterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -23,7 +22,7 @@ class CreateTeamActivity : AppCompatActivity() {
         //supportActionBar?.title = "Edit Roster"
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        binding.createPlayerButton.setOnClickListener{
+        binding.createTeamButton.setOnClickListener{
             val teamName = binding.teamNameEditText.text.toString().trim()
             val sport = binding.sportEditText.text.toString().trim()
             val city = binding.cityEditText.text.toString().trim()

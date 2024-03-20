@@ -38,6 +38,7 @@ class RosterActivity : DrawerBaseActivity() {
             adapter.setOnItemClickListener(object : PlayerRecyclerViewAdapter.onItemClickListener{
                 override fun onItemClick(position: Int) {
                     val myIntent = Intent(this@RosterActivity, PlayerActivity::class.java)
+                    myIntent.putExtra("selectedTeam",selectedTeam)
                     myIntent.putExtra("selectedPlayer",roster[position])
                     startActivity(myIntent)
                 }

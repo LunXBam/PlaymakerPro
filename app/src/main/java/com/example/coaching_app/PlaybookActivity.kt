@@ -1,5 +1,6 @@
 package com.example.coaching_app
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,14 @@ class PlaybookActivity : DrawerBaseActivity() {
         val viewModel : PlaybookViewModel by viewModels()
         viewModel.getPlayBook().observe(this) { playbook ->
             recyclerView.adapter = PlaybookRecyclerViewAdapter(playbook, selectedTeam)
+        }
+
+        val createPlayButton = binding.createPlayButton
+
+        createPlayButton.setOnClickListener{
+            val intent = Intent(this, CreatePlaybookActivity::class.java)
+            intent.putExtra("selectedTeam",selectedTeam)
+            startActivity(intent)
         }
     }
 }

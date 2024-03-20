@@ -18,6 +18,7 @@ class PlayerActivity : DrawerBaseActivity()
         setContentView(binding.root)
 
         val selectedPlayer = intent.getParcelableExtra<PlayerModel>("selectedPlayer")
+        val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
 
         val playerName = selectedPlayer?.firstName + " " + selectedPlayer?.lastName
 
@@ -118,6 +119,7 @@ class PlayerActivity : DrawerBaseActivity()
 
         binding.backButton.setOnClickListener{
             val intent = Intent(this, RosterActivity::class.java)
+            intent.putExtra("selectedTeam",selectedTeam)
             startActivity(intent)
         }
 
