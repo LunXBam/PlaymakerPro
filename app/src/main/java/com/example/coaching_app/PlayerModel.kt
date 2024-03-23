@@ -15,5 +15,6 @@ data class PlayerModel (
     var playerPosition: String? = null,
     var playerID: String? = null,
     var teamID: String? = null,
-    var userID: String? = null
+    var userID: String? = null,
+    var playerPhoto: String? = null
 ) : Parcelable{}

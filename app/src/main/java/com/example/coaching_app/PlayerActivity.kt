@@ -1,11 +1,16 @@
 package com.example.coaching_app
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.coaching_app.databinding.PlayerBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+
 
 class PlayerActivity : DrawerBaseActivity()
 {
@@ -33,6 +38,20 @@ class PlayerActivity : DrawerBaseActivity()
         playerPositionInput.text = playerPosition
 
         val playerTeamID = selectedPlayer?.teamID
+
+
+        val imageView = findViewById<ImageView>(R.id.playerPhoto)
+
+        val base64String = selectedPlayer?.playerPhoto
+        val bitmap = base64ToBitmap(base64String)
+
+        if (bitmap != null)
+        {
+            imageView.setImageBitmap(bitmap)
+        } else
+        {
+          imageView.setImageResource(R.drawable.baseline_person_24)
+        }
 
 
         val userID = FirebaseAuth.getInstance().currentUser?.uid
@@ -124,5 +143,21 @@ class PlayerActivity : DrawerBaseActivity()
         }
 
     }
+
+    fun base64ToBitmap(base64String: String?): Bitmap? {
+        if (base64String.isNullOrEmpty()) {
+            return null
+        }
+
+        return try {
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+        } catch (e: IllegalArgumentException) {
+            // Log the error or handle it as needed
+            null
+        }
+    }
+
+
 
 }
