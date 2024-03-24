@@ -40,7 +40,9 @@ class GameHistoryActivity : DrawerBaseActivity() {
 
             adapter.setOnItemClickListener(object : GameHistoryRecyclerViewAdapter.onItemClickListener{
                 override fun onItemClick(position: Int) {
-                    val myIntent = Intent(this@GameHistoryActivity, MainActivity::class.java)
+                    val myIntent = Intent(this@GameHistoryActivity, EditDeleteGameHistActivity::class.java)
+                    myIntent.putExtra("selectedTeam", selectedTeam)
+                    myIntent.putExtra("selectedGame",gameHist[position])
                     startActivity(myIntent)
                 }
             })
