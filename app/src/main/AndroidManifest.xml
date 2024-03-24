@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Coaching_App"
         tools:targetApi="31">
         <activity
+            android:name=".SchedulerActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreatePlaybookActivity"
             android:exported="false" />
         <activity
@@ -74,9 +77,9 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-
-        <activity android:name=".EditDeleteGameHistActivity"
-            android:exported="true"></activity>
+        <activity
+            android:name=".EditDeleteGameHistActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
