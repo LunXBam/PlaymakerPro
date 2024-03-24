@@ -3,6 +3,7 @@ package com.example.coaching_app
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,8 +33,17 @@ class GameHistoryActivity : DrawerBaseActivity() {
         binding.TeamName.text = selectedTeam?.teamName
 
        val viewModel : GameHistViewModel by viewModels()
+
         viewModel.getGameHistory().observe(this) { gameHist ->
-            recyclerView.adapter = GameHistoryRecyclerViewAdapter(this, gameHist, selectedTeam)
+            val adapter = GameHistoryRecyclerViewAdapter(gameHist,selectedTeam)
+            recyclerView.adapter = adapter
+
+            adapter.setOnItemClickListener(object : GameHistoryRecyclerViewAdapter.onItemClickListener{
+                override fun onItemClick(position: Int) {
+                    val myIntent = Intent(this@GameHistoryActivity, MainActivity::class.java)
+                    startActivity(myIntent)
+                }
+            })
         }
 
         binding.addGame.setOnClickListener{
