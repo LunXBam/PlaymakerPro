@@ -9,6 +9,9 @@ import com.example.coaching_app.databinding.ActivitySchedulerBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import android.content.Intent
+import android.view.View
+import java.util.*
 
 class SchedulerActivity : AppCompatActivity() {
 
@@ -22,27 +25,41 @@ class SchedulerActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        tvDate = findViewById<TextView>(R.id.tvSelectDate)
-        btnShowDatePicker = findViewById<Button>(R.id.btnShowDatePicker)
+//        tvDate = findViewById<TextView>(R.id.tvSelectDate)
+//        btnShowDatePicker = findViewById<Button>(R.id.btnShowDatePicker)
 
-        btnShowDatePicker.setOnClickListener{
-            showDatePicker()
-        }
+//        btnShowDatePicker.setOnClickListener{
+//            showDatePicker()
+//        }
+
     }
 
-    private fun showDatePicker(){
-        val datePickerDialog = DatePickerDialog(this,{DatePicker, year : Int, monthOfYear : Int, dayOfMonth : Int ->
-            val selectedDate = Calendar.getInstance()
-            selectedDate.set(year, monthOfYear, dayOfMonth)
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            val formattedDate = dateFormat.format(selectedDate.time)
-            tvDate.text = "Selected Date: " + formattedDate
-        },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
 
-        datePickerDialog.show()
+    fun addCalendarEvent(view: View) {
+        val calendarEvent: Calendar = Calendar.getInstance()
+        val intent = Intent(Intent.ACTION_EDIT)
+        intent.type = "vnd.android.cursor.item/event"
+        intent.putExtra("beginTime", calendarEvent.timeInMillis)
+        intent.putExtra("allDay", true)
+        intent.putExtra("rule", "FREQ=YEARLY")
+        intent.putExtra("endTime", calendarEvent.timeInMillis + 60 * 60 * 1000)
+        intent.putExtra("title", "Calendar Event")
+        startActivity(intent)
     }
+
+//    private fun showDatePicker(){
+//        val datePickerDialog = DatePickerDialog(this,{DatePicker, year : Int, monthOfYear : Int, dayOfMonth : Int ->
+//            val selectedDate = Calendar.getInstance()
+//            selectedDate.set(year, monthOfYear, dayOfMonth)
+//            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+//            val formattedDate = dateFormat.format(selectedDate.time)
+//            tvDate.text = "Selected Date: " + formattedDate
+//        },
+//            calendar.get(Calendar.YEAR),
+//            calendar.get(Calendar.MONTH),
+//            calendar.get(Calendar.DAY_OF_MONTH)
+//        )
+//
+//        datePickerDialog.show()
+//    }
 }
