@@ -56,7 +56,12 @@ class EditRosterActivity : AppCompatActivity() {
             binding.nationalityEditText.setText(selectedPlayer.nationality)
             binding.jerseyNumberEditText.setText(selectedPlayer.jerseyNumber)
             binding.positionEditText.setText(selectedPlayer.playerPosition)
-            //binding.imageView.setImageBitmap(selectedPlayer.playerPhoto)
+            imageString = selectedPlayer.playerPhoto
+            val bitmap = base64ToBitmap(imageString)
+            if (bitmap != null)
+            {
+                imageView.setImageBitmap(bitmap)
+            }
         }
 
         binding.createPlayerButton.setOnClickListener{
@@ -122,20 +127,55 @@ class EditRosterActivity : AppCompatActivity() {
             val selectedImageUri = data.data
             val inputStream = contentResolver.openInputStream(selectedImageUri!!)
             val bitmap = BitmapFactory.decodeStream(inputStream)
+//            getResizedBitmap(bitmap, 240)
             imageView.setImageBitmap(bitmap)
-
             val base64String = bitmapToBase64(bitmap)
-
             imageString = base64String
-
-            println("Base64 String: $base64String")
         }
     }
 
-    private fun bitmapToBase64(bitmap: Bitmap): String {
-        val byteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
-        val byteArray = byteArrayOutputStream.toByteArray()
+
+//    fun getResizedBitmap(image: Bitmap, maxSize: Int): Bitmap? {
+//        var width = image.width
+//        var height = image.height
+//        val bitmapRatio = width.toFloat() / height.toFloat()
+//        if (bitmapRatio > 1) {
+//            width = maxSize
+//            height = (width / bitmapRatio).toInt()
+//        } else {
+//            height = maxSize
+//            width = (height * bitmapRatio).toInt()
+//        }
+//        return Bitmap.createScaledBitmap(image, width, height, true)
+//    }
+
+    fun bitmapToBase64(bitmap: Bitmap): String {
+        val outputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream) // Initially compress with maximum quality
+        var quality = 100 // Initial quality
+        val maxSizeBytes = 50 * 1024 // 50 KB in bytes
+
+        // Check if the size exceeds the maximum allowed size
+        while (outputStream.size() > maxSizeBytes && quality > 0) {
+            outputStream.reset() // Clear the output stream
+            quality -= 10 // Reduce quality by 10 (you can adjust this increment)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream) // Compress with reduced quality
+        }
+
+        val byteArray = outputStream.toByteArray()
         return Base64.encodeToString(byteArray, Base64.DEFAULT)
+    }
+
+    fun base64ToBitmap(base64String: String?): Bitmap? {
+        if (base64String.isNullOrEmpty()) {
+            return null
+        }
+        return try {
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+        } catch (e: IllegalArgumentException) {
+            // Log the error or handle it as needed
+            null
+        }
     }
 }
