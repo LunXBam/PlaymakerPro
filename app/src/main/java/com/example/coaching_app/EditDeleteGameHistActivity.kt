@@ -89,22 +89,15 @@ class EditDeleteGameHistActivity : AppCompatActivity() {
         }
 
         // onclick listener for on delete button
-        binding.deleteBtn.setOnClickListener{
+        binding.btnBack.setOnClickListener{
 
             // create a yes/no confirmation to delete the game hist
             val builder = AlertDialog.Builder(this@EditDeleteGameHistActivity)
-            builder.setTitle("Confirm Delete")
-            builder.setMessage("Are you sure you want to delete this game history? It will not come back!!!")
+            builder.setTitle("Go Back?")
+            builder.setMessage("Are you sure you want to go back? Your changes will not be saved")
 
             // If they confirm they want to delete, delete the game history
             builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
-                // connect to the db
-                val db = FirebaseFirestore.getInstance().collection("game_history")
-
-                // delete game history
-                db.document(selectedGame?.gameID!!).delete()
-
-                dialogInterface.cancel()
 
                 val myIntent = Intent(this, GameHistoryActivity::class.java)
                 myIntent.putExtra("selectedTeam", selectedTeam)
