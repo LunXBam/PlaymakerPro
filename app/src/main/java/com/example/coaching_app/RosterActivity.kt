@@ -1,11 +1,15 @@
 package com.example.coaching_app
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityRosterBinding
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RosterActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityRosterBinding
@@ -43,6 +47,20 @@ class RosterActivity : DrawerBaseActivity() {
                     startActivity(myIntent)
                 }
             })
+            //Test This Prior To Pushing
+            val swipeToDeleteCallback = object : SwipeToDeleteCallback(){
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    val position = viewHolder.bindingAdapterPosition
+                    val playerID = roster[position].playerID.toString()
+                    val db = FirebaseFirestore.getInstance().collection("players").document(playerID)
+                        .delete()
+                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+                        .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+                }
+            }
+            //Test
+            val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+            itemTouchHelper.attachToRecyclerView(recyclerView)
         }
 
         val editRosterButton = binding.editRosterButton

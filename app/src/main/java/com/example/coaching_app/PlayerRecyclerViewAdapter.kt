@@ -12,6 +12,7 @@ class PlayerRecyclerViewAdapter(
     :RecyclerView.Adapter<PlayerRecyclerViewAdapter.MyViewHolder>() {
 
     private lateinit var mListener : onItemClickListener
+
     interface onItemClickListener{
         fun onItemClick(position: Int)
     }
@@ -56,6 +57,7 @@ class PlayerRecyclerViewAdapter(
                 listener.onItemClick(bindingAdapterPosition)
             }
         }
+
         /*init {
             itemView.setOnClickListener(this)
         }
