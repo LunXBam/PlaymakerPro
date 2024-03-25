@@ -68,6 +68,25 @@
                     android:hint="Last Name" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/heightValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Height: 5' 5&quot;"
+                android:textSize="20sp"
+                android:textColor="@color/yellow"
+                android:textAlignment="center"
+                />
+
+            <SeekBar
+                android:id="@+id/heightSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:min="36"
+                android:max="96"
+                android:progress="66" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout3"
                 android:layout_width="match_parent"
@@ -84,6 +103,25 @@
                     android:layout_height="wrap_content"
                     android:hint="Height" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/weightValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Weight: 170lbs"
+                android:textSize="20sp"
+                android:textColor="@color/yellow"
+                android:textAlignment="center"
+                />
+
+            <SeekBar
+                android:id="@+id/weightSeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:min="40"
+                android:max="300"
+                android:progress="170" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout4"
@@ -116,7 +154,9 @@
                     android:id="@+id/birthdateEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Brithdate" />
+                    android:hint="Birthdate"
+                    android:inputType="date"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -150,7 +190,10 @@
                     android:id="@+id/jerseyNumberEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Jersey Number" />
+                    android:hint="Jersey Number"
+                    android:inputType="number"
+                    />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -168,6 +211,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Position" />
+
+                <Spinner
+                    android:id="@+id/positionSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
@@ -186,7 +236,6 @@
                 android:layout_below="@id/imageView"
                 android:layout_marginTop="16dp"
                 android:text="Upload Image" />
-
         </LinearLayout>
     </ScrollView>
 

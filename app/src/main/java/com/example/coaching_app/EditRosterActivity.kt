@@ -8,8 +8,10 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.SeekBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.coaching_app.databinding.ActivityEditRosterBinding
@@ -43,6 +45,44 @@ class EditRosterActivity : AppCompatActivity() {
         //supportActionBar?.title = "Edit Roster"
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        binding.heightSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
+                val feet = (progress / 12).toString()
+                val inches = (progress % 12).toString()
+                val height = "Height: " + feet + "' " + inches + " \""
+                binding.heightValue.text = height
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+
+        })
+
+        binding.weightSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
+                val weight = "Weight: " + progress.toString() + "lbs"
+                binding.heightValue.text = weight
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+
+        })
+
+        val soccerPositions = arrayOf("Goal Keeper", "Right Fullback", "Left Fullback", "Center Back", "Center Midfield",
+            "Right Midfield / Wing", "Left Midfield / Wing", "Attacking Center Mid", "Center Forward", "Defensive Center Mid",
+            "Left Center Back", "Right Center Back")
+        val positionsAdapter = ArrayAdapter(this@EditRosterActivity,android.R.layout.simple_spinner_dropdown_item, soccerPositions)
+
+        binding.positionSpinner.adapter = positionsAdapter
+
+
         val bundle: Bundle? = intent.extras
         val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
         val selectedPlayer = intent.getParcelableExtra<PlayerModel>("selectedPlayer")
@@ -50,12 +90,17 @@ class EditRosterActivity : AppCompatActivity() {
         if(selectedPlayer?.playerID?.isNotEmpty() == true){
             binding.firstNameEditText.setText(selectedPlayer.firstName)
             binding.lastNameEditText.setText(selectedPlayer.lastName)
-            binding.heightEditText.setText(selectedPlayer.height)
-            binding.weightEditText.setText(selectedPlayer.weight)
+            binding.heightValue.text = selectedPlayer.height
+            binding.weightValue.text = selectedPlayer.weight
             binding.birthdateEditText.setText(selectedPlayer.birthdate)
             binding.nationalityEditText.setText(selectedPlayer.nationality)
             binding.jerseyNumberEditText.setText(selectedPlayer.jerseyNumber)
-            binding.positionEditText.setText(selectedPlayer.playerPosition)
+            binding.positionSpinner.setSelection(0)
+            for((index, position) in soccerPositions.withIndex()){
+                if(selectedPlayer.playerPosition == position){
+                    binding.positionSpinner.setSelection(index)
+                }
+            }
             imageString = selectedPlayer.playerPhoto
             val bitmap = base64ToBitmap(imageString)
             if (bitmap != null)
@@ -67,12 +112,12 @@ class EditRosterActivity : AppCompatActivity() {
         binding.createPlayerButton.setOnClickListener{
             val firstName = binding.firstNameEditText.text.toString().trim()
             val lastName = binding.lastNameEditText.text.toString().trim()
-            val height = binding.heightEditText.text.toString().trim()
-            val weight = binding.weightEditText.text.toString().trim()
+            val height = binding.heightValue.text.toString().trim()
+            val weight = binding.weightValue.text.toString().trim()
             val birthdate = binding.birthdateEditText.text.toString().trim()
             val nationality = binding.nationalityEditText.text.toString().trim()
             val jerseyNumber = binding.jerseyNumberEditText.text.toString().trim()
-            val position = binding.positionEditText.text.toString().trim()
+            val position = binding.positionSpinner.selectedItem.toString().trim()
             val playerPhoto = imageString
 
             if(firstName.isNotEmpty() && lastName.isNotEmpty()
