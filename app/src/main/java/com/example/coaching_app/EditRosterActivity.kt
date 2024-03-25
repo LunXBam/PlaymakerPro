@@ -45,6 +45,19 @@ class EditRosterActivity : AppCompatActivity() {
 
         val bundle: Bundle? = intent.extras
         val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
+        val selectedPlayer = intent.getParcelableExtra<PlayerModel>("selectedPlayer")
+
+        if(selectedPlayer?.playerID?.isNotEmpty() == true){
+            binding.firstNameEditText.setText(selectedPlayer.firstName)
+            binding.lastNameEditText.setText(selectedPlayer.lastName)
+            binding.heightEditText.setText(selectedPlayer.height)
+            binding.weightEditText.setText(selectedPlayer.weight)
+            binding.birthdateEditText.setText(selectedPlayer.birthdate)
+            binding.nationalityEditText.setText(selectedPlayer.nationality)
+            binding.jerseyNumberEditText.setText(selectedPlayer.jerseyNumber)
+            binding.positionEditText.setText(selectedPlayer.playerPosition)
+            //binding.imageView.setImageBitmap(selectedPlayer.playerPhoto)
+        }
 
         binding.createPlayerButton.setOnClickListener{
             val firstName = binding.firstNameEditText.text.toString().trim()
@@ -60,12 +73,18 @@ class EditRosterActivity : AppCompatActivity() {
             if(firstName.isNotEmpty() && lastName.isNotEmpty()
                 && jerseyNumber.isNotEmpty() && position.isNotEmpty()){
 
-
                 val db = FirebaseFirestore.getInstance().collection("players")
+
                 val userID = FirebaseAuth.getInstance().currentUser?.uid
                 val teamID = selectedTeam?.teamID
+                var playerID = ""
 
-                val playerID = db.document().id
+                if(selectedPlayer?.playerID?.isNotEmpty() == true){
+                    playerID = selectedPlayer.playerID!!
+                }
+                else{
+                    playerID = db.document().id
+                }
 
                 val player = PlayerModel(firstName, lastName, height, weight,
                     birthdate, nationality, jerseyNumber, position, playerID, teamID, userID, playerPhoto)

@@ -52,10 +52,18 @@ class RosterActivity : DrawerBaseActivity() {
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     val position = viewHolder.bindingAdapterPosition
                     val playerID = roster[position].playerID.toString()
-                    val db = FirebaseFirestore.getInstance().collection("players").document(playerID)
-                        .delete()
-                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
-                        .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+                    if(direction == 8){ //Swipe Right to delete
+                        val db = FirebaseFirestore.getInstance().collection("players").document(playerID)
+                            .delete()
+                            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+                            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+                    }
+                    else if (direction == 4){ //Swipe left to edit
+                        val myIntent = Intent(this@RosterActivity, EditRosterActivity::class.java)
+                        myIntent.putExtra("selectedTeam",selectedTeam)
+                        myIntent.putExtra("selectedPlayer",roster[position])
+                        startActivity(myIntent)
+                    }
                 }
             }
             //Test
