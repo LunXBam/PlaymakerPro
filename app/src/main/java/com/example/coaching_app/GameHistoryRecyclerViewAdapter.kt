@@ -24,18 +24,18 @@ class GameHistoryRecyclerViewAdapter(
         mListener = listener
     }
 
-    inner class GameHistViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView) {
+    inner class GameHistViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val opponent = itemView.findViewById<TextView>(R.id.oppTeamName)
         val score = itemView.findViewById<TextView>(R.id.score)
         val gameResult = itemView.findViewById<TextView>(R.id.result)
         val date = itemView.findViewById<TextView>(R.id.gameDay)
 
-        init {
-            itemView.setOnClickListener{
-                listener.onItemClick(bindingAdapterPosition)
-            }
-        }
+//        init {
+//            itemView.setOnClickListener{
+//                listener.onItemClick(bindingAdapterPosition)
+//            }
+//        }
     }
 
 
@@ -43,7 +43,7 @@ class GameHistoryRecyclerViewAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameHistViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.game_history_recycler_view_, parent, false)
-        return GameHistViewHolder(view,mListener)
+        return GameHistViewHolder(view)
     }
 
 
