@@ -1,10 +1,13 @@
 package com.example.coaching_app
 
+import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -53,10 +56,29 @@ class RosterActivity : DrawerBaseActivity() {
                     val position = viewHolder.bindingAdapterPosition
                     val playerID = roster[position].playerID.toString()
                     if(direction == 8){ //Swipe Right to delete
-                        val db = FirebaseFirestore.getInstance().collection("players").document(playerID)
-                            .delete()
-                            .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
-                            .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+
+                        val builder = AlertDialog.Builder(this@RosterActivity)
+                        builder.setTitle("Confirm Delete")
+                        builder.setMessage("Are you sure you want to delete this game history? It will not come back!!!")
+
+                        // If they confirm they want to delete, delete the game history
+                        builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+                            val db = FirebaseFirestore.getInstance().collection("players").document(playerID)
+                                .delete()
+                                .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
+                                .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
+
+                        })
+
+                        // if they confirm they don't want to delete
+                        builder.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
+                            dialogInterface.cancel()
+                        })
+
+                        val alert = builder.create()
+                        alert.show()
+
+
                     }
                     else if (direction == 4){ //Swipe left to edit
                         val myIntent = Intent(this@RosterActivity, EditRosterActivity::class.java)
