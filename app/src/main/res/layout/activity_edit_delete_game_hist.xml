@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10sp"
-        android:text="Edit/Delete Game"
+        android:text="Edit Game"
         android:textColor="@color/yellow"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,9 @@
             android:id="@+id/oppScoreEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="Opponent Score:" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -80,7 +82,8 @@
             android:id="@+id/ourScoreEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Our Score:" />
+            android:hint="Our Score:"
+            android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -114,7 +117,8 @@
             android:id="@+id/gameDateEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Game Date(YY/MM/DD)" />
+            android:hint="Game Date(YY/MM/DD)"
+            android:inputType="datetime"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -145,11 +149,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout6">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
             android:id="@+id/weatherEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Weather Condition:" />
+
+        <Spinner
+            android:id="@+id/weatherList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:entries="@array/weather"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -177,5 +189,6 @@
         app:layout_constraintHorizontal_bias="0.132"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout9" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
