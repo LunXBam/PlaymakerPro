@@ -4,15 +4,18 @@ import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityRosterBinding
 import com.google.firebase.firestore.FirebaseFirestore
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 class RosterActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityRosterBinding
@@ -86,6 +89,54 @@ class RosterActivity : DrawerBaseActivity() {
                         myIntent.putExtra("selectedPlayer",roster[position])
                         startActivity(myIntent)
                     }
+                }
+
+                override fun onChildDraw(
+                    c: Canvas,
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    dX: Float,
+                    dY: Float,
+                    actionState: Int,
+                    isCurrentlyActive: Boolean
+                ) {
+                    RecyclerViewSwipeDecorator.Builder(
+                        c,
+                        recyclerView,
+                        viewHolder,
+                        dX,
+                        dY,
+                        actionState,
+                        isCurrentlyActive
+                    )
+                        .addSwipeRightBackgroundColor(
+                            ContextCompat.getColor(
+                                this@RosterActivity,
+                                R.color.background_del
+                            )
+
+                        )
+                        .addSwipeLeftBackgroundColor(
+                            ContextCompat.getColor(
+                                this@RosterActivity,
+                                R.color.background_edit
+                            )
+                        )
+
+                        .addSwipeRightActionIcon(R.drawable.baseline_arrow_back_24)
+                        .addSwipeLeftActionIcon(R.drawable.baseline_add_box_24)
+                        .create()
+                        .decorate()
+
+                    super.onChildDraw(
+                        c,
+                        recyclerView,
+                        viewHolder,
+                        dX,
+                        dY,
+                        actionState,
+                        isCurrentlyActive
+                    )
                 }
             }
             //Test
