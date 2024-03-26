@@ -56,6 +56,8 @@ class PlayerActivity : DrawerBaseActivity()
 
         val userID = FirebaseAuth.getInstance().currentUser?.uid
 
+        var statDataIntent = StatsModel()
+
         val db_info = FirebaseFirestore.getInstance().collection("teams")
 
         if (playerTeamID != null) {
@@ -78,7 +80,7 @@ class PlayerActivity : DrawerBaseActivity()
 
         val db_stat = FirebaseFirestore.getInstance()
         val collectionRef = db_stat.collection("soccer_stats")
-        val query = collectionRef.whereEqualTo("playerID",playerID).limit(1)
+        val query = collectionRef.whereEqualTo("playerID",playerID).whereEqualTo("teamID", selectedPlayer?.teamID)
 
         query.get()
             .addOnSuccessListener { documents ->
@@ -121,6 +123,8 @@ class PlayerActivity : DrawerBaseActivity()
 
                         val gamesPlayedInput = findViewById<TextView>(R.id.gamesPlayedInput)
                         gamesPlayedInput.text = stat_games_played
+
+                        statDataIntent = statData
                     }
 
                 }
@@ -133,6 +137,8 @@ class PlayerActivity : DrawerBaseActivity()
         binding.editStatButton.setOnClickListener {
             val intent = Intent(this, CreateStatsActivity::class.java)
             intent.putExtra("selectedPlayer", selectedPlayer)
+            intent.putExtra("selectedTeam",selectedTeam)
+            intent.putExtra("statDataIntent", statDataIntent)
             startActivity(intent)
         }
 

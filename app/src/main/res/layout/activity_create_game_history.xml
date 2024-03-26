@@ -152,7 +152,8 @@
         android:id="@+id/weatherEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Weather Condition:" />
+        android:hint="Weather Condition:"
+        />
 
     <Spinner
         android:id="@+id/weatherList"

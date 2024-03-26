@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.coaching_app.databinding.ActivityEditRosterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.selects.select
 import java.io.ByteArrayOutputStream
 
 class EditRosterActivity : AppCompatActivity() {
@@ -178,28 +177,32 @@ class EditRosterActivity : AppCompatActivity() {
         {
             val selectedImageUri = data.data
             val inputStream = contentResolver.openInputStream(selectedImageUri!!)
-            val bitmap = BitmapFactory.decodeStream(inputStream)
-//            getResizedBitmap(bitmap, 240)
+            var bitmap = BitmapFactory.decodeStream(inputStream)
+            bitmap = resizeBitmap(bitmap, 300, 300)
             imageView.setImageBitmap(bitmap)
             val base64String = bitmapToBase64(bitmap)
             imageString = base64String
         }
     }
 
+    fun resizeBitmap(bitmap: Bitmap, maxWidth: Int, maxHeight: Int): Bitmap {
+        var width = bitmap.width
+        var height = bitmap.height
 
-//    fun getResizedBitmap(image: Bitmap, maxSize: Int): Bitmap? {
-//        var width = image.width
-//        var height = image.height
-//        val bitmapRatio = width.toFloat() / height.toFloat()
-//        if (bitmapRatio > 1) {
-//            width = maxSize
-//            height = (width / bitmapRatio).toInt()
-//        } else {
-//            height = maxSize
-//            width = (height * bitmapRatio).toInt()
-//        }
-//        return Bitmap.createScaledBitmap(image, width, height, true)
-//    }
+        if (width > maxWidth || height > maxHeight) {
+            val aspectRatio = width.toFloat() / height.toFloat()
+            if (width > height) {
+                width = maxWidth
+                height = (width / aspectRatio).toInt()
+            } else {
+                height = maxHeight
+                width = (height * aspectRatio).toInt()
+            }
+        }
+
+        return Bitmap.createScaledBitmap(bitmap, width, height, true)
+    }
+
 
     fun bitmapToBase64(bitmap: Bitmap): String {
         val outputStream = ByteArrayOutputStream()

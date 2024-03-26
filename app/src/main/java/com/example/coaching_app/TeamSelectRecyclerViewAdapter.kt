@@ -1,5 +1,6 @@
 package com.example.coaching_app
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
 import android.view.LayoutInflater
@@ -34,9 +35,19 @@ class TeamSelectRecyclerViewAdapter(
 
         override fun onBindViewHolder(holder : MyViewHolder, position: Int) {
             val team = teamList[position]
-            val imageBytes = Base64.decode(team.logo, Base64.DEFAULT)
-            val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-            holder.ivLogo.setImageBitmap(decodedImage)
+//            val imageBytes = Base64.decode(team.logo, Base64.DEFAULT)
+//            val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+            val logoString = team.logo
+            val bitmap = base64ToBitmap(logoString)
+            if (bitmap != null)
+            {
+                holder.ivLogo.setImageBitmap(bitmap)
+            }
+            else
+            {
+                holder.ivLogo.setImageResource(R.drawable.default_team_logo)
+            }
+//            holder.ivLogo.setImageBitmap(decodedImage)
             holder.tvTeamName.text = team.teamName
         }
 
@@ -56,4 +67,18 @@ class TeamSelectRecyclerViewAdapter(
                 }
             }
         }
+
+
+    fun base64ToBitmap(base64String: String?): Bitmap? {
+        if (base64String.isNullOrEmpty()) {
+            return null
+        }
+        return try {
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+        } catch (e: IllegalArgumentException) {
+            // Log the error or handle it as needed
+            null
+        }
+    }
 }

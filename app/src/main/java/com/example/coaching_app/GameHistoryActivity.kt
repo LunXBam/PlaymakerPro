@@ -4,9 +4,13 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
+import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -16,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.GameHistoryBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
+
 
 
 class GameHistoryActivity : DrawerBaseActivity() {
@@ -40,8 +45,21 @@ class GameHistoryActivity : DrawerBaseActivity() {
         val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
 
         binding.TeamName.text = selectedTeam?.teamName
+        val teamLogoString = selectedTeam?.logo
+        val imageView = findViewById<ImageView>(R.id.imageView6)
+        val bitmap = base64ToBitmap(teamLogoString)
+        if (bitmap != null)
+        {
+            imageView.setImageBitmap(bitmap)
+        } else
+        {
+            imageView.setImageResource(R.drawable.default_team_logo)
+        }
 
-       val viewModel : GameHistViewModel by viewModels()
+
+
+
+        val viewModel : GameHistViewModel by viewModels()
 
         viewModel.getGameHistory().observe(this) { gameHist ->
             val adapter = GameHistoryRecyclerViewAdapter(gameHist,selectedTeam)
@@ -101,6 +119,7 @@ class GameHistoryActivity : DrawerBaseActivity() {
                         myIntent.putExtra("selectedTeam", selectedTeam)
                         myIntent.putExtra("selectedGame",gameHist[position])
                         startActivity(myIntent)
+                        adapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
                     }
 
 
@@ -173,6 +192,20 @@ class GameHistoryActivity : DrawerBaseActivity() {
             startActivity(intent)
         }
 
+    }
+
+    fun base64ToBitmap(base64String: String?): Bitmap? {
+        if (base64String.isNullOrEmpty()) {
+            return null
+        }
+
+        return try {
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+        } catch (e: IllegalArgumentException) {
+            // Log the error or handle it as needed
+            null
+        }
     }
 
     fun reloadDB(){

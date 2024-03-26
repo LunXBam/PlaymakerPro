@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.coaching_app.databinding.ActivityCreateStatsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
+
 
 class CreateStatsActivity : AppCompatActivity() {
+
 
     private lateinit var binding: ActivityCreateStatsBinding
     private lateinit var auth: FirebaseAuth
@@ -22,6 +25,20 @@ class CreateStatsActivity : AppCompatActivity() {
 
 
         val selectedPlayer = intent.getParcelableExtra<PlayerModel>("selectedPlayer")
+        val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
+        val statDataIntent = intent.getParcelableExtra<StatsModel>("statDataIntent")
+
+        if (statDataIntent != null) {
+            binding.AssistsText.setText(statDataIntent.assists)
+            binding.shotsText.setText(statDataIntent.shots)
+            binding.blockText.setText(statDataIntent.blocks)
+            binding.foulsText.setText(statDataIntent.fouls)
+            binding.goalsText.setText(statDataIntent.goals)
+            binding.gamesPlayedText.setText(statDataIntent.gamesPlayed)
+            binding.tacklesText.setText(statDataIntent.tackles)
+            binding.redCardText.setText(statDataIntent.redCards)
+            binding.yellowCardText.setText(statDataIntent.yellowCards)
+        }
 
         binding.createStats.setOnClickListener {
 
@@ -37,45 +54,94 @@ class CreateStatsActivity : AppCompatActivity() {
             //val injured = binding.InjuredText.text.toString().trim()
             val injured = binding.injuredCheckBox.isActivated.toString()
 
-            if(shots.isNotEmpty() && assists.isNotEmpty() && blocks.isNotEmpty() && blocks.isNotEmpty()
-                && fouls.isNotEmpty() && goals.isNotEmpty())
-            {
-                val db = FirebaseFirestore.getInstance().collection("soccer_stats")
+            if (shots.isNotEmpty() && assists.isNotEmpty() && blocks.isNotEmpty() &&
+                fouls.isNotEmpty() && goals.isNotEmpty() && gamesPlayed.isNotEmpty() &&
+                tackles.isNotEmpty() && redCards.isNotEmpty() && yellowCards.isNotEmpty()
+            ) {
 
-                val statID = db.document().id
-                val playerID = selectedPlayer?.playerID
-                val teamID = selectedPlayer?.teamID
+                val db = FirebaseFirestore.getInstance()
+                val statsCollection = db.collection("soccer_stats")
 
-                val stat = StatsModel(assists,blocks,fouls,gamesPlayed,goals,
-                injured,playerID,redCards,shots,statID,tackles,yellowCards,teamID)
+                // Query to find existing stats document
+                val query = statsCollection.whereEqualTo("playerID", selectedPlayer?.playerID)
+                    .whereEqualTo("teamID", selectedPlayer?.teamID)
 
-                db.document(statID).set(stat)
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Stats Saved", Toast.LENGTH_LONG).show()
+                query.get().addOnSuccessListener { querySnapshot ->
+                    if (!querySnapshot.isEmpty) {
+                        // If a document exists, update its data
+                        val existingDoc = querySnapshot.documents[0]
+                        val stat = StatsModel(
+                            assists, blocks, fouls, gamesPlayed, goals,
+                            injured, selectedPlayer?.playerID, redCards, shots, existingDoc.id,
+                            tackles, yellowCards, selectedPlayer?.teamID
+                        )
+                        statsCollection.document(existingDoc.id).set(stat, SetOptions.merge())
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "Stats Updated", Toast.LENGTH_LONG).show()
+                                val intent = Intent(this, PlayerActivity::class.java)
+                                intent.putExtra("selectedPlayer", selectedPlayer)
+                                intent.putExtra("selectedTeam",selectedTeam)
+                                startActivity(intent)
+                            }
+                            .addOnFailureListener { exception ->
+                                Log.e("DB Issue", "Error updating stats: ", exception)
+                                val intent = Intent(this, PlayerActivity::class.java)
+                                intent.putExtra("selectedPlayer", selectedPlayer)
+                                intent.putExtra("selectedTeam",selectedTeam)
+                                startActivity(intent)
+                            }
+                    } else {
+                        // If no document exists, create a new one
+                        val stat = StatsModel(
+                            assists, blocks, fouls, gamesPlayed, goals,
+                            injured, selectedPlayer?.playerID, redCards, shots, "", tackles,
+                            yellowCards, selectedPlayer?.teamID
+                        )
+                        statsCollection.add(stat)
+                            .addOnSuccessListener { documentReference ->
+                                val newStatID = documentReference.id
+                                val updatedStat = StatsModel(
+                                assists, blocks, fouls, gamesPlayed, goals,
+                                injured, selectedPlayer?.playerID, redCards, shots, newStatID, tackles,
+                                yellowCards, selectedPlayer?.teamID
+                            )
+                                documentReference.set(updatedStat)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(this, "New Stats Saved", Toast.LENGTH_LONG).show()
+                                        val intent = Intent(this, PlayerActivity::class.java)
+                                        intent.putExtra("selectedPlayer", selectedPlayer)
+                                        intent.putExtra("selectedTeam",selectedTeam)
+                                        startActivity(intent)
+                                    }
+                                    .addOnFailureListener { exception ->
+                                        Log.e("DB Issue", "Error saving new stats: ", exception)
+                                        val intent = Intent(this, PlayerActivity::class.java)
+                                        intent.putExtra("selectedPlayer", selectedPlayer)
+                                        intent.putExtra("selectedTeam",selectedTeam)
+                                        startActivity(intent)
+                                    }
+                            }
+                            .addOnFailureListener { exception ->
+                                Log.e("DB Issue", "Error adding new stats document: ", exception)
+                                val intent = Intent(this, PlayerActivity::class.java)
+                                intent.putExtra("selectedPlayer", selectedPlayer)
+                                intent.putExtra("selectedTeam",selectedTeam)
+                                startActivity(intent)
+                            }
                     }
-                    .addOnFailureListener{
-                        it.localizedMessage?.let { it1 -> Log.w("DB issue", it1)}
-                    }
-
-                val intent = Intent(this, PlayerActivity::class.java)
-                intent.putExtra("selectedPlayer", selectedPlayer)
-                startActivity(intent)
+                }
             }
-
-            else
-            {
-                Toast.makeText(this, "All fields must be filled in!!!",
-                    Toast.LENGTH_LONG).show()
+            else {
+                Toast.makeText(this, "All fields must be filled in!!!", Toast.LENGTH_LONG)
+                    .show()
             }
         }
-
 
         binding.backButton.setOnClickListener {
             val intent = Intent(this, PlayerActivity::class.java)
             intent.putExtra("selectedPlayer", selectedPlayer)
+            intent.putExtra("selectedTeam",selectedTeam)
             startActivity(intent)
         }
-
-
     }
 }

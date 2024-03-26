@@ -1,12 +1,15 @@
 package com.example.coaching_app
 
-import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
+import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -39,6 +42,18 @@ class RosterActivity : DrawerBaseActivity() {
         recyclerView.setHasFixedSize(true)
 
         binding.textView.text = selectedTeam?.teamName
+
+        val teamLogoString = selectedTeam?.logo
+        val imageView = findViewById<ImageView>(R.id.imageView)
+        val bitmap = base64ToBitmap(teamLogoString)
+        if (bitmap != null)
+        {
+            imageView.setImageBitmap(bitmap)
+        } else
+        {
+            imageView.setImageResource(R.drawable.default_team_logo)
+        }
+
 
         val viewModel : RosterViewModel by viewModels()
 
@@ -89,6 +104,7 @@ class RosterActivity : DrawerBaseActivity() {
                         myIntent.putExtra("selectedTeam",selectedTeam)
                         myIntent.putExtra("selectedPlayer",roster[position])
                         startActivity(myIntent)
+                        adapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
                     }
                 }
 
@@ -153,4 +169,20 @@ class RosterActivity : DrawerBaseActivity() {
             startActivity(intent)
         }
     }
+
+    fun base64ToBitmap(base64String: String?): Bitmap? {
+        if (base64String.isNullOrEmpty()) {
+            return null
+        }
+
+        return try {
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+        } catch (e: IllegalArgumentException) {
+            // Log the error or handle it as needed
+            null
+        }
+    }
+
+
 }
