@@ -1,12 +1,18 @@
 package com.example.coaching_app
 
+import android.content.ContentValues
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityTeamSelectBinding
+import com.google.firebase.firestore.FirebaseFirestore
 
 class TeamSelectActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTeamSelectBinding
@@ -47,8 +53,47 @@ class TeamSelectActivity : AppCompatActivity() {
                 }
 
             })
-        }
 
+            val swipeToDeleteCallback = object : SwipeToDeleteCallback(){
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    val position = viewHolder.bindingAdapterPosition
+                    val teamID = teams[position].teamID.toString()
+                    if(direction == 8){ //Swipe Right to delete
+
+                        val builder = AlertDialog.Builder(this@TeamSelectActivity)
+                        builder.setTitle("Confirm Delete")
+                        builder.setMessage("Are you sure you want to delete this game history? It will not come back!!!")
+
+                        // If they confirm they want to delete, delete the game history
+                        builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+                            val db = FirebaseFirestore.getInstance().collection("teams").document(teamID)
+                                .delete()
+                                .addOnSuccessListener { Log.d(ContentValues.TAG, "DocumentSnapshot successfully deleted!") }
+                                .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Error deleting document", e) }
+
+                        })
+
+                        // if they confirm they don't want to delete
+                        builder.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
+                            dialogInterface.cancel()
+                        })
+
+                        val alert = builder.create()
+                        alert.show()
+
+
+                    }
+                    else if (direction == 4){ //Swipe left to edit
+                        val myIntent = Intent(this@TeamSelectActivity, CreateTeamActivity::class.java)
+                        myIntent.putExtra("selectedTeam",teams[position])
+                        startActivity(myIntent)
+                    }
+                }
+            }
+            //Test
+            val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+            itemTouchHelper.attachToRecyclerView(recyclerView)
+        }
 
 
         val newTeamButton = binding.newTeamButton

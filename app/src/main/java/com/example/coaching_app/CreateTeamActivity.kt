@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.example.coaching_app.databinding.ActivityCreateTeamBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -22,9 +23,31 @@ class CreateTeamActivity : AppCompatActivity() {
         //supportActionBar?.title = "Edit Roster"
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val bundle: Bundle? = intent.extras
+        val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
+
+
+
+        val sports = arrayOf("Soccer")
+        val positionsAdapter = ArrayAdapter(this@CreateTeamActivity,android.R.layout.simple_spinner_dropdown_item, sports)
+
+        binding.sportSpinner.adapter = positionsAdapter
+        binding.sportSpinner.setSelection(0)
+
+        if(selectedTeam?.teamID?.isNotEmpty() == true) {
+            binding.teamNameEditText.setText(selectedTeam.teamName)
+            for((index, sport) in sports.withIndex()){
+                if(selectedTeam.sport == sport){
+                    binding.sportSpinner.setSelection(index)
+                }
+            }
+            binding.cityEditText.setText(selectedTeam.city)
+            binding.colorsEditText.setText(selectedTeam.colors)
+        }
+
         binding.createTeamButton.setOnClickListener{
             val teamName = binding.teamNameEditText.text.toString().trim()
-            val sport = binding.sportEditText.text.toString().trim()
+            val sport = binding.sportSpinner.selectedItem.toString().trim()
             val city = binding.cityEditText.text.toString().trim()
             val colors = binding.colorsEditText.text.toString().trim()
 
