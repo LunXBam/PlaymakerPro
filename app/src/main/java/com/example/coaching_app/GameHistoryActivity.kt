@@ -47,6 +47,7 @@ class GameHistoryActivity : DrawerBaseActivity() {
             val adapter = GameHistoryRecyclerViewAdapter(gameHist,selectedTeam)
             recyclerView.adapter = adapter
 
+
 //            adapter.setOnItemClickListener(object : GameHistoryRecyclerViewAdapter.onItemClickListener{
 //                override fun onItemClick(position: Int) {
 //                    val myIntent = Intent(this@GameHistoryActivity, EditDeleteGameHistActivity::class.java)
@@ -59,6 +60,8 @@ class GameHistoryActivity : DrawerBaseActivity() {
 
             val swipeToDeleteCallback = object : SwipeToDeleteCallback(){
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+
 
                     if(direction == 8){
 
@@ -82,10 +85,13 @@ class GameHistoryActivity : DrawerBaseActivity() {
                         // if they confirm they don't want to delete
                         builder.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
                             dialogInterface.cancel()
+                            adapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
                         })
 
                         val alert = builder.create()
                         alert.show()
+
+
 
                     }
 
@@ -96,6 +102,9 @@ class GameHistoryActivity : DrawerBaseActivity() {
                         myIntent.putExtra("selectedGame",gameHist[position])
                         startActivity(myIntent)
                     }
+
+
+
                 }
 
                 override fun onChildDraw(
@@ -164,7 +173,9 @@ class GameHistoryActivity : DrawerBaseActivity() {
             startActivity(intent)
         }
 
+    }
 
+    fun reloadDB(){
 
     }
 }

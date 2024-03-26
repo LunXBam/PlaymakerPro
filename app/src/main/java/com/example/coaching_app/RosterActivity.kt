@@ -76,6 +76,7 @@ class RosterActivity : DrawerBaseActivity() {
                         // if they confirm they don't want to delete
                         builder.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
                             dialogInterface.cancel()
+                            adapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
                         })
 
                         val alert = builder.create()
