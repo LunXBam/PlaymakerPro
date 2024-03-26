@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/navy"
-    tools:context=".createStatsActivity">
+    tools:context=".CreateStatsActivity">
 
 
 
@@ -74,7 +74,8 @@
                     android:id="@+id/shotsText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Shots:" />
+                    android:hint="Shots:"
+                    android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -91,7 +92,8 @@
                     android:id="@+id/AssistsText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Assists:" />
+                    android:hint="Assists:"
+                    android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -109,7 +111,8 @@
                     android:id="@+id/blockText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Blocks:" />
+                    android:hint="Blocks:"
+                    android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -126,7 +129,8 @@
                         android:id="@+id/foulsText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Fouls:" />
+                        android:hint="Fouls:"
+                        android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -143,7 +147,8 @@
                     android:id="@+id/goalsText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Goals" />
+                    android:hint="Goals"
+                    android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -160,7 +165,8 @@
                     android:id="@+id/gamesPlayedText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Games Played:" />
+                    android:hint="Games Played:"
+                    android:inputType="number"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -178,7 +184,8 @@
                     android:id="@+id/tacklesText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Tackles:" />
+                    android:hint="Tackles:"
+                    android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -195,7 +202,8 @@
                     android:id="@+id/redCardText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Red Cards:" />
+                    android:hint="Red Cards:"
+                    android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -212,7 +220,8 @@
                     android:id="@+id/yellowCardText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Yellow Cards:" />
+                    android:hint="Yellow Cards:"
+                    android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -225,15 +234,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout8">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/InjuredText"
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/InjuredText"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Injured:"-->
+<!--                    />-->
+
+                <CheckBox
+                    android:id="@+id/injuredCheckBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Injured:" />
+                    android:text="Injured" />
             </com.google.android.material.textfield.TextInputLayout>
-
-
-
 
         </LinearLayout>
 

@@ -131,7 +131,7 @@ class PlayerActivity : DrawerBaseActivity()
 
 
         binding.editStatButton.setOnClickListener {
-            val intent = Intent(this, createStatsActivity::class.java)
+            val intent = Intent(this, CreateStatsActivity::class.java)
             intent.putExtra("selectedPlayer", selectedPlayer)
             startActivity(intent)
         }

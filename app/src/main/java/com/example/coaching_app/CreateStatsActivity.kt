@@ -8,7 +8,7 @@ import com.example.coaching_app.databinding.ActivityCreateStatsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class createStatsActivity : AppCompatActivity() {
+class CreateStatsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateStatsBinding
     private lateinit var auth: FirebaseAuth
@@ -34,7 +34,8 @@ class createStatsActivity : AppCompatActivity() {
             val tackles = binding.tacklesText.text.toString().trim()
             val redCards = binding.redCardText.text.toString().trim()
             val yellowCards = binding.yellowCardText.text.toString().trim()
-            val injured = binding.InjuredText.text.toString().trim()
+            //val injured = binding.InjuredText.text.toString().trim()
+            val injured = binding.injuredCheckBox.isActivated.toString()
 
             if(shots.isNotEmpty() && assists.isNotEmpty() && blocks.isNotEmpty() && blocks.isNotEmpty()
                 && fouls.isNotEmpty() && goals.isNotEmpty())

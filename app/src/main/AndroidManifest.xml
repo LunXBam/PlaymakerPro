@@ -21,7 +21,7 @@
             android:name=".CreatePlaybookActivity"
             android:exported="false" />
         <activity
-            android:name=".createStatsActivity"
+            android:name=".CreateStatsActivity"
             android:exported="false" />
         <activity
             android:name=".DrawerBaseActivity"
