@@ -64,7 +64,7 @@ class EditRosterActivity : AppCompatActivity() {
         binding.weightSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
                 val weight = "Weight: " + progress.toString() + "lbs"
-                binding.heightValue.text = weight
+                binding.weightValue.text = weight
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
