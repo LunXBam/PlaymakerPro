@@ -13,4 +13,6 @@
     <color name="blue">#0174BE</color>
     <color name="yellow">#FFC436</color>
     <color name="wedding">#FFF0CE</color>
+    <color name="background_del">#FF0000</color>
+    <color name="background_edit">#008000</color>
 </resources>
