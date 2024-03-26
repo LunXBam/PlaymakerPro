@@ -94,6 +94,9 @@ open class DrawerBaseActivity : AppCompatActivity(), NavigationView.OnNavigation
             R.id.nav_team_select ->{
                 startActivity(Intent(this,TeamSelectActivity::class.java))
             }
+            R.id.nav_scheduler ->{
+                startActivity(Intent(this,SchedulerActivity::class.java))
+            }
         }
         return true
     }
