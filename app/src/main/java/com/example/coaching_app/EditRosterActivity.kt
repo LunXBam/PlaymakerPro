@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.coaching_app.databinding.ActivityEditRosterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.selects.select
 import java.io.ByteArrayOutputStream
 
 class EditRosterActivity : AppCompatActivity() {
@@ -90,8 +91,14 @@ class EditRosterActivity : AppCompatActivity() {
         if(selectedPlayer?.playerID?.isNotEmpty() == true){
             binding.firstNameEditText.setText(selectedPlayer.firstName)
             binding.lastNameEditText.setText(selectedPlayer.lastName)
-            binding.heightValue.text = selectedPlayer.height
-            binding.weightValue.text = selectedPlayer.weight
+            val feet = (selectedPlayer.height?.toInt()!! / 12).toString()
+            val inches = (selectedPlayer.height?.toInt()!! % 12).toString()
+            val heightString = "Height: " + feet + "' " + inches + " \""
+            binding.heightValue.text = heightString
+            binding.heightSeekBar.progress = selectedPlayer.height?.toInt()!!
+            val weightString = "Weight: " + selectedPlayer.weight.toString() + "lbs"
+            binding.weightValue.text = weightString
+            binding.weightSeekBar.progress = selectedPlayer.weight?.toInt()!!
             binding.birthdateEditText.setText(selectedPlayer.birthdate)
             binding.nationalityEditText.setText(selectedPlayer.nationality)
             binding.jerseyNumberEditText.setText(selectedPlayer.jerseyNumber)
@@ -112,8 +119,8 @@ class EditRosterActivity : AppCompatActivity() {
         binding.createPlayerButton.setOnClickListener{
             val firstName = binding.firstNameEditText.text.toString().trim()
             val lastName = binding.lastNameEditText.text.toString().trim()
-            val height = binding.heightValue.text.toString().trim()
-            val weight = binding.weightValue.text.toString().trim()
+            val height = binding.heightSeekBar.progress.toString().trim()
+            val weight = binding.weightSeekBar.progress.toString().trim()
             val birthdate = binding.birthdateEditText.text.toString().trim()
             val nationality = binding.nationalityEditText.text.toString().trim()
             val jerseyNumber = binding.jerseyNumberEditText.text.toString().trim()
