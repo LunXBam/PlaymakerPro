@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import android.widget.ImageView
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityLandingPageBinding
@@ -46,12 +47,12 @@ class LandingPageActivity : DrawerBaseActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
 
-        // connect to the db and then only show the last 3 games of the team
 
-//        val viewModel: GameHistViewModel by viewModels()
-//        viewModel.getGameHistory().observe(this) { gameHist ->
-//            recyclerView.adapter = GameHistoryRecyclerViewAdapter(gameHist, selectedTeam)
-//        }
+
+        val viewModel: GameHistViewModel by viewModels()
+        viewModel.getGameHistory().observe(this) { gameHist ->
+            recyclerView.adapter = GameHistoryRecyclerViewAdapter(gameHist, selectedTeam)
+        }
 
         val db = FirebaseFirestore.getInstance().collection("soccer_stats")
         db.whereEqualTo("teamID", selectedTeam?.teamID)
