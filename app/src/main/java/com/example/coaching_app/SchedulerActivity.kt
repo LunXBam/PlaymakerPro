@@ -13,7 +13,7 @@ import android.content.Intent
 import android.view.View
 import java.util.*
 
-class SchedulerActivity : AppCompatActivity() {
+class SchedulerActivity : DrawerBaseActivity() {
 
     private lateinit var tvDate : TextView
     private lateinit var btnShowDatePicker : Button
