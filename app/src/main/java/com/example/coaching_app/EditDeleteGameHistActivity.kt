@@ -1,5 +1,6 @@
 package com.example.coaching_app
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class EditDeleteGameHistActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityEditDeleteGameHistBinding
+    @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditDeleteGameHistBinding.inflate(layoutInflater)
@@ -42,8 +44,7 @@ class EditDeleteGameHistActivity : AppCompatActivity() {
         val venue = findViewById<TextView>(R.id.venueEditText)
         venue.text = selectedGame?.venue
 
-        val weather = findViewById<TextView>(R.id.weatherEditText)
-        weather.text = selectedGame?.weather
+        binding.weatherList.setSelection(0)
 
 
 
@@ -57,7 +58,7 @@ class EditDeleteGameHistActivity : AppCompatActivity() {
             val newResult = binding.resultEditText.text.toString().trim()
             val newGameDay = binding.gameDateEditText.text.toString().trim()
             val newVenue = binding.venueEditText.text.toString().trim()
-            val newWeather = binding.weatherEditText.text.toString().trim()
+            val newWeather = binding.weatherList.selectedItem.toString().trim()
 
             // validation
             if(newOpp.isNotEmpty() && newOppScore.isNotEmpty() && newOurScore.isNotEmpty()

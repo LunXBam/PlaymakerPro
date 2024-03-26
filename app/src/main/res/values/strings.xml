@@ -86,4 +86,11 @@
     </string>
     <string name="menu_drawer_open">Drawer Open</string>
     <string name="menu_drawer_close">Drawer Close</string>
+    <string-array name="weather">
+        <item>Sunny</item>
+        <item>Cloudy</item>
+        <item>Rainy</item>
+        <item>Snow</item>
+        <item>Clear</item>
+    </string-array>
 </resources>

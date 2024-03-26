@@ -32,7 +32,7 @@ class CreateGameHistoryActivity : AppCompatActivity() {
             val result = binding.resultEditText.text.toString().trim()
             val gameDate = binding.gameDateEditText.text.toString().trim()
             val venue = binding.venueEditText.text.toString().trim()
-            val weather = binding.weatherEditText.text.toString().trim()
+            val weather = binding.weatherList.selectedItem.toString().trim()
 
             if(oppName.isNotEmpty() && oppScore.isNotEmpty() && ourScore.isNotEmpty()
                 && result.isNotEmpty() && gameDate.isNotEmpty() && venue.isNotEmpty() && weather.isNotEmpty()){
