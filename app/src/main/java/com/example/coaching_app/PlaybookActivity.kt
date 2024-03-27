@@ -18,6 +18,7 @@ class PlaybookActivity : DrawerBaseActivity() {
         binding = ActivityPlaybookBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        allocateActivityTitle("Playbook")
 
         val bundle: Bundle? = intent.extras
         val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")

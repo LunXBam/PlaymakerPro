@@ -25,6 +25,7 @@ class LandingPageActivity : DrawerBaseActivity() {
         binding = ActivityLandingPageBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        allocateActivityTitle("Home")
 
         val bundle: Bundle? = intent.extras
         val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
@@ -42,6 +43,10 @@ class LandingPageActivity : DrawerBaseActivity() {
 
         val title = binding.nameLandingTextView
         title.text = selectedTeam?.teamName
+        val city = binding.cityNameTextView
+        city.text = selectedTeam?.city
+        val sport = binding.sportNameTextView
+        sport.text = selectedTeam?.sport
 
         recyclerView = findViewById(R.id.gameLandingRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -124,6 +129,12 @@ class LandingPageActivity : DrawerBaseActivity() {
 
         binding.landingToPlaysButton.setOnClickListener{
             val intent = Intent(this, PlaybookActivity::class.java)
+            intent.putExtra("selectedTeam",selectedTeam)
+            startActivity(intent)
+        }
+
+        binding.landingToSchedulerButton.setOnClickListener{
+            val intent = Intent(this, SchedulerActivity::class.java)
             intent.putExtra("selectedTeam",selectedTeam)
             startActivity(intent)
         }

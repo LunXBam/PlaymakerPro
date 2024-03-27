@@ -7,16 +7,16 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityTeamSelectBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
-class TeamSelectActivity : AppCompatActivity() {
+class TeamSelectActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityTeamSelectBinding
     private lateinit var recyclerView: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +24,8 @@ class TeamSelectActivity : AppCompatActivity() {
         binding = ActivityTeamSelectBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        allocateActivityTitle("Select Team")
+        isNavDrawerEnabled = false
 
         //supportActionBar?.title = "Team Roster"
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -88,6 +90,7 @@ class TeamSelectActivity : AppCompatActivity() {
                         val myIntent = Intent(this@TeamSelectActivity, CreateTeamActivity::class.java)
                         myIntent.putExtra("selectedTeam",teams[position])
                         startActivity(myIntent)
+                        adapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
                     }
                 }
             }

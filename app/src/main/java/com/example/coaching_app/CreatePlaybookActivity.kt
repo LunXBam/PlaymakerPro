@@ -10,14 +10,13 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.coaching_app.databinding.ActivityCreatePlaybookBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.io.ByteArrayOutputStream
 
 
-class CreatePlaybookActivity : AppCompatActivity() {
+class CreatePlaybookActivity : DrawerBaseActivity() {
 
     private lateinit var binding: ActivityCreatePlaybookBinding
 
@@ -34,6 +33,7 @@ class CreatePlaybookActivity : AppCompatActivity() {
         binding = ActivityCreatePlaybookBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        allocateActivityTitle("Add Playbook")
 
         imageView = findViewById(R.id.imageView)
         uploadButton = findViewById(R.id.uploadPlayButton)

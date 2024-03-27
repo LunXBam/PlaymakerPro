@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityRosterBinding
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.toObject
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 class RosterActivity : DrawerBaseActivity() {
@@ -31,6 +30,7 @@ class RosterActivity : DrawerBaseActivity() {
         binding = ActivityRosterBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        allocateActivityTitle("Team Roster")
 
         //supportActionBar?.title = "Team Roster"
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -43,6 +43,10 @@ class RosterActivity : DrawerBaseActivity() {
         recyclerView.setHasFixedSize(true)
 
         binding.textView.text = selectedTeam?.teamName
+        val city = binding.cityNameTextView
+        city.text = selectedTeam?.city
+        val sport = binding.sportNameTextView
+        sport.text = selectedTeam?.sport
 
         val teamLogoString = selectedTeam?.logo
         val imageView = findViewById<ImageView>(R.id.imageView)

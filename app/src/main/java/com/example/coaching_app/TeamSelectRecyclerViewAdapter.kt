@@ -33,10 +33,17 @@ class TeamSelectRecyclerViewAdapter(
             return MyViewHolder(itemView,mListener)
         }
 
+//    override fun onCreateViewHolder(
+//        parent: ViewGroup,
+//        viewType: Int
+//    ): MyViewHolder {
+//        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.card_layout,
+//            parent, false)
+//        return MyViewHolder(itemView,mListener)
+//    }
+
         override fun onBindViewHolder(holder : MyViewHolder, position: Int) {
             val team = teamList[position]
-//            val imageBytes = Base64.decode(team.logo, Base64.DEFAULT)
-//            val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
             val logoString = team.logo
             val bitmap = base64ToBitmap(logoString)
             if (bitmap != null)
@@ -47,8 +54,9 @@ class TeamSelectRecyclerViewAdapter(
             {
                 holder.ivLogo.setImageResource(R.drawable.default_team_logo)
             }
-//            holder.ivLogo.setImageBitmap(decodedImage)
             holder.tvTeamName.text = team.teamName
+            holder.tvCityName.text = team.city
+            holder.tvSportName.text = team.sport
         }
 
         override fun getItemCount(): Int {
@@ -60,6 +68,8 @@ class TeamSelectRecyclerViewAdapter(
 
             val ivLogo: ImageView = itemView.findViewById(R.id.teamLogoImageView)
             val tvTeamName: TextView = itemView.findViewById(R.id.teamNameTextView)
+            val tvCityName: TextView = itemView.findViewById(R.id.cityNameTextView)
+            val tvSportName: TextView = itemView.findViewById(R.id.sportNameTextView)
 
             init {
                 itemView.setOnClickListener {
@@ -77,7 +87,6 @@ class TeamSelectRecyclerViewAdapter(
             val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
             BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
         } catch (e: IllegalArgumentException) {
-            // Log the error or handle it as needed
             null
         }
     }

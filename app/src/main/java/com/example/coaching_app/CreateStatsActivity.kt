@@ -3,14 +3,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.coaching_app.databinding.ActivityCreateStatsBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 
 
-class CreateStatsActivity : AppCompatActivity() {
+class CreateStatsActivity : DrawerBaseActivity() {
 
 
     private lateinit var binding: ActivityCreateStatsBinding
@@ -22,6 +21,7 @@ class CreateStatsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_stats)
         binding = ActivityCreateStatsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        allocateActivityTitle("Edit Stats")
 
 
         val selectedPlayer = intent.getParcelableExtra<PlayerModel>("selectedPlayer")
@@ -137,11 +137,11 @@ class CreateStatsActivity : AppCompatActivity() {
             }
         }
 
-        binding.backButton.setOnClickListener {
-            val intent = Intent(this, PlayerActivity::class.java)
-            intent.putExtra("selectedPlayer", selectedPlayer)
-            intent.putExtra("selectedTeam",selectedTeam)
-            startActivity(intent)
-        }
+//        binding.backButton.setOnClickListener {
+//            val intent = Intent(this, PlayerActivity::class.java)
+//            intent.putExtra("selectedPlayer", selectedPlayer)
+//            intent.putExtra("selectedTeam",selectedTeam)
+//            startActivity(intent)
+//        }
     }
 }

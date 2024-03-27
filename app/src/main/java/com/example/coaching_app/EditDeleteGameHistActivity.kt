@@ -1,18 +1,14 @@
 package com.example.coaching_app
 
 import android.annotation.SuppressLint
-import android.content.DialogInterface
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.example.coaching_app.databinding.ActivityEditDeleteGameHistBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
-class EditDeleteGameHistActivity : AppCompatActivity() {
+class EditDeleteGameHistActivity : DrawerBaseActivity() {
 
     private lateinit var binding:ActivityEditDeleteGameHistBinding
     @SuppressLint("WrongViewCast")
@@ -20,6 +16,7 @@ class EditDeleteGameHistActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditDeleteGameHistBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        allocateActivityTitle("Edit Game History")
 
         // Grab the selected team from put extra
         val selectedGame = intent.getParcelableExtra<GameHistory>("selectedGame")
@@ -89,29 +86,29 @@ class EditDeleteGameHistActivity : AppCompatActivity() {
 
         }
 
-        // onclick listener for on delete button
-        binding.btnBack.setOnClickListener{
-
-            // create a yes/no confirmation to delete the game hist
-            val builder = AlertDialog.Builder(this@EditDeleteGameHistActivity)
-            builder.setTitle("Go Back?")
-            builder.setMessage("Are you sure you want to go back? Your changes will not be saved")
-
-            // If they confirm they want to delete, delete the game history
-            builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
-
-                val myIntent = Intent(this, GameHistoryActivity::class.java)
-                myIntent.putExtra("selectedTeam", selectedTeam)
-                startActivity(myIntent)
-            })
-
-            // if they confirm they don't want to delete
-            builder.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
-                dialogInterface.cancel()
-            })
-
-            val alert = builder.create()
-            alert.show()
-        }
+//        // onclick listener for on delete button
+//        binding.btnBack.setOnClickListener{
+//
+//            // create a yes/no confirmation to delete the game hist
+//            val builder = AlertDialog.Builder(this@EditDeleteGameHistActivity)
+//            builder.setTitle("Go Back?")
+//            builder.setMessage("Are you sure you want to go back? Your changes will not be saved")
+//
+//            // If they confirm they want to delete, delete the game history
+//            builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+//
+//                val myIntent = Intent(this, GameHistoryActivity::class.java)
+//                myIntent.putExtra("selectedTeam", selectedTeam)
+//                startActivity(myIntent)
+//            })
+//
+//            // if they confirm they don't want to delete
+//            builder.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
+//                dialogInterface.cancel()
+//            })
+//
+//            val alert = builder.create()
+//            alert.show()
+//        }
     }
 }

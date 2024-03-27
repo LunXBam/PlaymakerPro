@@ -1,17 +1,15 @@
 package com.example.coaching_app
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.coaching_app.databinding.ActivityCreateGameHistoryBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 
 
-class CreateGameHistoryActivity : AppCompatActivity() {
+class CreateGameHistoryActivity : DrawerBaseActivity() {
 
     private lateinit var binding: ActivityCreateGameHistoryBinding
     private lateinit var auth: FirebaseAuth
@@ -21,6 +19,7 @@ class CreateGameHistoryActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_game_history)
         binding = ActivityCreateGameHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        allocateActivityTitle("Add Game History")
 
         val bundle: Bundle? = intent.extras
         val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
@@ -66,10 +65,10 @@ class CreateGameHistoryActivity : AppCompatActivity() {
             }
         }
 
-        binding.goBack.setOnClickListener{
-            val intent = Intent(this, GameHistoryActivity::class.java)
-            intent.putExtra("selectedTeam",selectedTeam)
-            startActivity(intent)
-        }
+//        binding.goBack.setOnClickListener{
+//            val intent = Intent(this, GameHistoryActivity::class.java)
+//            intent.putExtra("selectedTeam",selectedTeam)
+//            startActivity(intent)
+//        }
     }
 }

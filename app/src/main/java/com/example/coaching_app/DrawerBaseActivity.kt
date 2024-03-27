@@ -17,6 +17,7 @@ import com.google.android.material.navigation.NavigationView
 open class DrawerBaseActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout
+    protected var isNavDrawerEnabled: Boolean = true // Flag to control the drawer toggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,25 +61,21 @@ open class DrawerBaseActivity : AppCompatActivity(), NavigationView.OnNavigation
                 val intent = Intent(this, LandingPageActivity::class.java)
                 intent.putExtra("selectedTeam", recievedData)
                 startActivity(intent)
-//                startActivity(Intent(this, LandingPageActivity::class.java))
             }
             R.id.nav_team -> {
                 val intent = Intent(this, RosterActivity::class.java)
                 intent.putExtra("selectedTeam", recievedData)
                 startActivity(intent)
-//                startActivity(Intent(this, RosterActivity::class.java))
             }
             R.id.nav_history -> {
                 val intent = Intent(this, GameHistoryActivity::class.java)
                 intent.putExtra("selectedTeam", recievedData)
                 startActivity(intent)
-//                startActivity(Intent(this, GameHistoryActivity::class.java))
             }
             R.id.nav_playbook -> {
                 val intent = Intent(this, PlaybookActivity::class.java)
                 intent.putExtra("selectedTeam", recievedData)
                 startActivity(intent)
-//                startActivity(Intent(this, PlaybookActivity::class.java))
             }
             R.id.nav_logout ->{
                 AuthUI.getInstance()
@@ -105,6 +102,23 @@ open class DrawerBaseActivity : AppCompatActivity(), NavigationView.OnNavigation
     protected fun allocateActivityTitle(titleString: String) {
         supportActionBar?.title = titleString
     }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        // Set the enabled state of the drawer toggle based on the flag
+        val toggle = ActionBarDrawerToggle(
+            this,
+            drawerLayout,
+            findViewById<Toolbar>(R.id.toolBar),
+            R.string.menu_drawer_open,
+            R.string.menu_drawer_close
+        )
+        toggle.isDrawerIndicatorEnabled = isNavDrawerEnabled
+        toggle.syncState()
+    }
+
+
+
 }
 
 

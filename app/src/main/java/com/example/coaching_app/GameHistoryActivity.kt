@@ -36,6 +36,7 @@ class GameHistoryActivity : DrawerBaseActivity() {
         binding = GameHistoryBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        allocateActivityTitle("Game History")
 
         recyclerView = findViewById(R.id.gameHistRecycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -45,6 +46,10 @@ class GameHistoryActivity : DrawerBaseActivity() {
         val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
 
         binding.TeamName.text = selectedTeam?.teamName
+        val city = binding.cityNameTextView
+        city.text = selectedTeam?.city
+        val sport = binding.sportNameTextView
+        sport.text = selectedTeam?.sport
         val teamLogoString = selectedTeam?.logo
         val imageView = findViewById<ImageView>(R.id.imageView6)
         val bitmap = base64ToBitmap(teamLogoString)
@@ -186,11 +191,11 @@ class GameHistoryActivity : DrawerBaseActivity() {
             startActivity(intent)
         }
 
-        binding.goBack.setOnClickListener{
-            val intent = Intent(this,LandingPageActivity::class.java)
-            intent.putExtra("selectedTeam",selectedTeam)
-            startActivity(intent)
-        }
+//        binding.goBack.setOnClickListener{
+//            val intent = Intent(this,LandingPageActivity::class.java)
+//            intent.putExtra("selectedTeam",selectedTeam)
+//            startActivity(intent)
+//        }
 
     }
 

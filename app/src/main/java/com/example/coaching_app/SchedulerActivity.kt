@@ -1,17 +1,12 @@
 package com.example.coaching_app
 
-import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.example.coaching_app.databinding.ActivitySchedulerBinding
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Locale
-import android.content.Intent
-import android.view.View
-import java.util.*
 
 class SchedulerActivity : DrawerBaseActivity() {
 
@@ -24,6 +19,7 @@ class SchedulerActivity : DrawerBaseActivity() {
         binding = ActivitySchedulerBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        allocateActivityTitle("Scheduler")
 
 //        tvDate = findViewById<TextView>(R.id.tvSelectDate)
 //        btnShowDatePicker = findViewById<Button>(R.id.btnShowDatePicker)

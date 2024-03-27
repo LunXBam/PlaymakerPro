@@ -12,13 +12,12 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.coaching_app.databinding.ActivityCreateTeamBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.io.ByteArrayOutputStream
 
-class CreateTeamActivity : AppCompatActivity() {
+class CreateTeamActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityCreateTeamBinding
 
     private lateinit var imageView: ImageView
@@ -36,6 +35,8 @@ class CreateTeamActivity : AppCompatActivity() {
         binding = ActivityCreateTeamBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        allocateActivityTitle("Add Team")
+        isNavDrawerEnabled = false
 
         imageView = findViewById(R.id.imageView)
         uploadButton = findViewById(R.id.uploadLogoButton)

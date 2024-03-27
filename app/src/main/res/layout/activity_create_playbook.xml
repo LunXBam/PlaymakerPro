@@ -4,30 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/navy"
+    android:background="@color/grey"
     tools:context=".CreatePlaybookActivity">
-
-    <TextView
-        android:id="@+id/pageTitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Upload New Play"
-        android:textSize="20sp"
-        android:textColor="@color/yellow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/yellow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pageTitleTextView">
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/playNameEditText"
@@ -42,7 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/yellow"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayout">
@@ -74,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Upload Image"
+        android:backgroundTint="@color/teal_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -83,9 +72,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="85dp"
-        android:backgroundTint="@color/yellow"
-        android:text="Upload Play"
-        android:textColor="@color/navy"
+        android:backgroundTint="@color/magenta"
+        android:text="Upload"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uploadPlayButton" />

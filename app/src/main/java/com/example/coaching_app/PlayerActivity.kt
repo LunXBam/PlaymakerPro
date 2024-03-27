@@ -21,6 +21,7 @@ class PlayerActivity : DrawerBaseActivity()
         setContentView(R.layout.player)
         binding = PlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        allocateActivityTitle("Player Details")
 
         val selectedPlayer = intent.getParcelableExtra<PlayerModel>("selectedPlayer")
         val selectedTeam = intent.getParcelableExtra<Team>("selectedTeam")
@@ -142,11 +143,11 @@ class PlayerActivity : DrawerBaseActivity()
             startActivity(intent)
         }
 
-        binding.backButton.setOnClickListener{
-            val intent = Intent(this, RosterActivity::class.java)
-            intent.putExtra("selectedTeam",selectedTeam)
-            startActivity(intent)
-        }
+//        binding.backButton.setOnClickListener{
+//            val intent = Intent(this, RosterActivity::class.java)
+//            intent.putExtra("selectedTeam",selectedTeam)
+//            startActivity(intent)
+//        }
 
     }
 

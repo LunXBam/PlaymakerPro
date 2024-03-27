@@ -4,66 +4,155 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/navy">
+    android:background="@color/grey">
 
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:src="@drawable/soccer_ball"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView6"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:src="@drawable/soccer_ball"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <TextView
-        android:id="@+id/TeamName"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="10dp"
-        android:text="Team Name Here"
-        android:textColor="@color/yellow"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+<!--    <TextView-->
+<!--        android:id="@+id/TeamName"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:text="Team Name Here"-->
+<!--        android:textColor="@color/yellow"-->
+<!--        android:textSize="30dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/imageView6"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/imageView6"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/imageView6" />-->
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/teamCard"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="15dp"
+        android:outlineProvider="background"
+        app:cardBackgroundColor="@color/light_grey"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="3dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg2"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/soccer_ball"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/TeamName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:maxWidth="250dp"
+                android:maxHeight="150dp"
+                android:text="Team Name"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.192" />
+
+            <TextView
+                android:id="@+id/cityNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:maxWidth="250dp"
+                android:maxHeight="150dp"
+                android:text="City"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.457" />
+
+            <TextView
+                android:id="@+id/sportNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:maxWidth="250dp"
+                android:maxHeight="150dp"
+                android:text="Sport"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.67" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gameHistRecycler"
-        android:layout_width="408dp"
-        android:layout_height="327dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="343dp"
+        android:layout_height="387dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.411"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TeamName"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/teamCard"
+        app:layout_constraintVertical_bias="0.145" />
 
     <Button
         android:id="@+id/addGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginBottom="68dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/magenta"
         android:text="Add History"
-        android:textColor="@color/navy"
-        android:backgroundTint="@color/yellow"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/goBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="68dp"
-        android:textColor="@color/navy"
-        android:backgroundTint="@color/yellow"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!--    <Button-->
+<!--        android:id="@+id/goBack"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginEnd="40dp"-->
+<!--        android:layout_marginBottom="68dp"-->
+<!--        android:textColor="@color/navy"-->
+<!--        android:backgroundTint="@color/yellow"-->
+<!--        android:text="Back"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

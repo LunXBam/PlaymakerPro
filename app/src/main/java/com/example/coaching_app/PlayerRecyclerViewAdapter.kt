@@ -36,7 +36,7 @@ class PlayerRecyclerViewAdapter(
         val fullName = roster.firstName + " " + roster.lastName
         val number = "#" + roster.jerseyNumber
         holder.tvName.text = fullName
-        holder.tvNumber.text = number
+//        holder.tvNumber.text = number
         holder.tvPosition.text = roster.playerPosition
     }
 
@@ -48,7 +48,7 @@ class PlayerRecyclerViewAdapter(
 
 
         val tvName: TextView = itemView.findViewById(R.id.nameTextView)
-        val tvNumber: TextView = itemView.findViewById(R.id.numberTextView)
+//        val tvNumber: TextView = itemView.findViewById(R.id.numberTextView)
         val tvPosition: TextView = itemView.findViewById(R.id.positionEditText)
 
 

@@ -4,36 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/navy"
+    android:background="@color/grey"
     tools:context=".PlaybookActivity">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Playbook"
-        android:textAlignment="center"
-        android:textColor="@color/yellow"
-        android:textSize="50sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/playRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/createPlayButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+<!--    <Button-->
+<!--        android:id="@+id/createPlayButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Upload New Play"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
         android:id="@+id/createPlayButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Upload New Play"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="Add"
+        android:src="@drawable/baseline_add_24"
+        app:backgroundTint="@color/magenta"
+        app:circularflow_defaultAngle="23"
+        app:elevation="3dp"
+        app:fabCustomSize="70dp"
+        app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="32dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

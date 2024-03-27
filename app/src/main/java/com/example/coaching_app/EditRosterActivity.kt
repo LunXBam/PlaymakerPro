@@ -13,13 +13,12 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.coaching_app.databinding.ActivityEditRosterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.io.ByteArrayOutputStream
 
-class EditRosterActivity : AppCompatActivity() {
+class EditRosterActivity : DrawerBaseActivity() {
 
     private lateinit var binding: ActivityEditRosterBinding
     private lateinit var imageView: ImageView
@@ -34,6 +33,7 @@ class EditRosterActivity : AppCompatActivity() {
         binding = ActivityEditRosterBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+        allocateActivityTitle("Edit Roster")
 
         imageView = findViewById(R.id.imageView)
         uploadButton = findViewById(R.id.uploadPlayerPhotoButton)
