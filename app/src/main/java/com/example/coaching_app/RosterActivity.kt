@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityRosterBinding
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.toObject
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 class RosterActivity : DrawerBaseActivity() {
@@ -86,6 +87,15 @@ class RosterActivity : DrawerBaseActivity() {
                                 .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully deleted!") }
                                 .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
 
+                            val query = FirebaseFirestore.getInstance().collection("soccer_stats")
+                                .whereEqualTo(playerID,playerID)
+                                .get()
+                                .addOnSuccessListener { documents ->
+                                    for (document in documents) {
+                                        document.reference.delete()
+                                    }
+                                }
+                                .addOnFailureListener { e -> Log.w(TAG, "Error deleting document", e) }
                         })
 
                         // if they confirm they don't want to delete
