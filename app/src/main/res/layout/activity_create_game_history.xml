@@ -189,7 +189,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
       android:layout_marginHorizontal="20dp"
-      app:layout_constraintBottom_toTopOf="@+id/editHist">
+     >
 
 
     <LinearLayout
