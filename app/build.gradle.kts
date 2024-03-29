@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.playmaker_pro"
+    namespace = "com.example.coaching_app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.playmaker_pro"
+        applicationId = "com.example.coaching_app"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
