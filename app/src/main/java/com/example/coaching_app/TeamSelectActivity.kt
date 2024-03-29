@@ -3,15 +3,18 @@ package com.example.coaching_app
 import android.content.ContentValues
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.coaching_app.databinding.ActivityTeamSelectBinding
 import com.google.firebase.firestore.FirebaseFirestore
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 class TeamSelectActivity : DrawerBaseActivity() {
     private lateinit var binding: ActivityTeamSelectBinding
@@ -64,7 +67,7 @@ class TeamSelectActivity : DrawerBaseActivity() {
 
                         val builder = AlertDialog.Builder(this@TeamSelectActivity)
                         builder.setTitle("Confirm Delete")
-                        builder.setMessage("Are you sure you want to delete this game history? It will not come back!!!")
+                        builder.setMessage("Are you sure you want to delete this team? It will not come back!!!")
 
                         // If they confirm they want to delete, delete the game history
                         builder.setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
@@ -78,7 +81,7 @@ class TeamSelectActivity : DrawerBaseActivity() {
                         // if they confirm they don't want to delete
                         builder.setNegativeButton("No", DialogInterface.OnClickListener { dialogInterface, i ->
                             dialogInterface.cancel()
-                            adapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
+                            adapter.notifyItemChanged(viewHolder.bindingAdapterPosition)
                         })
 
                         val alert = builder.create()
@@ -92,6 +95,53 @@ class TeamSelectActivity : DrawerBaseActivity() {
                         startActivity(myIntent)
                         adapter.notifyItemRemoved(viewHolder.bindingAdapterPosition)
                     }
+                }
+                override fun onChildDraw(
+                    c: Canvas,
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    dX: Float,
+                    dY: Float,
+                    actionState: Int,
+                    isCurrentlyActive: Boolean
+                ) {
+                    RecyclerViewSwipeDecorator.Builder(
+                        c,
+                        recyclerView,
+                        viewHolder,
+                        dX,
+                        dY,
+                        actionState,
+                        isCurrentlyActive
+                    )
+                        .addSwipeRightBackgroundColor(
+                            ContextCompat.getColor(
+                                this@TeamSelectActivity,
+                                R.color.background_del
+                            )
+
+                        )
+                        .addSwipeLeftBackgroundColor(
+                            ContextCompat.getColor(
+                                this@TeamSelectActivity,
+                                R.color.background_edit
+                            )
+                        )
+
+                        .addSwipeRightActionIcon(R.drawable.baseline_arrow_back_24)
+                        .addSwipeLeftActionIcon(R.drawable.baseline_add_box_24)
+                        .create()
+                        .decorate()
+
+                    super.onChildDraw(
+                        c,
+                        recyclerView,
+                        viewHolder,
+                        dX,
+                        dY,
+                        actionState,
+                        isCurrentlyActive
+                    )
                 }
             }
             //Test
