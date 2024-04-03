@@ -1,5 +1,6 @@
 package com.example.coaching_app
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
 import android.view.LayoutInflater
@@ -25,9 +26,28 @@ class PlaybookRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder : PlayViewHolder, position: Int) {
         val currentItem = playList[position]
-        val imageBytes = Base64.decode(currentItem.playImage, Base64.DEFAULT)
-        val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-        holder.playImage.setImageBitmap(decodedImage)
+        val playString = currentItem.playImage
+        val bitmap = base64ToBitmap(playString)
+        if(bitmap != null)
+        {
+            holder.playImage.setImageBitmap(bitmap)
+        }
+        else
+        {
+            holder.playImage.setImageResource(R.drawable.playbook_image1)
+        }
+//        val imageBytes = Base64.decode(currentItem.playImage, Base64.DEFAULT)
+//
+//        if (imageBytes != null)
+//        {
+//            val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+//            holder.playImage.setImageBitmap(decodedImage)
+//        }
+//        else
+//        {
+//            holder.playImage.setImageResource(R.drawable.playbook_image1)
+//        }
+
         holder.playTitle.text = currentItem.playTitle
     }
 
@@ -39,4 +59,20 @@ class PlaybookRecyclerViewAdapter(
         val playImage: ImageView = itemView.findViewById(R.id.playImageView)
         val playTitle: TextView = itemView.findViewById(R.id.titleTextView)
     }
+
+
+    fun base64ToBitmap(base64String: String?): Bitmap? {
+        if (base64String.isNullOrEmpty()) {
+            return null
+        }
+        return try {
+            val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+            BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+        } catch (e: IllegalArgumentException) {
+            null
+        }
+    }
+
+
+
 }
