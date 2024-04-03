@@ -59,10 +59,38 @@ class LandingPageActivity : DrawerBaseActivity() {
             recyclerView.adapter = GameHistoryRecyclerViewAdapter(gameHist, selectedTeam)
         }
 
+        val db2 = FirebaseFirestore.getInstance().collection("players")
+        db2.whereEqualTo("teamID", selectedTeam?.teamID)
+            .limit(1)
+            .get()
+            .addOnSuccessListener { documents ->
+                for(document in documents){
+                    val playerData = document.toObject(PlayerModel::class.java)
+                    val playerName = "Name: " + playerData?.firstName?.substring(0, 1) +
+                            ". " + playerData?.lastName
+                    val playerNumber = "Jersey: #" + playerData?.jerseyNumber
+                    binding.playerNameLandingTextView.text = playerName
+                    binding.playerNumberLandingTextView.text = playerNumber
+                    val db = FirebaseFirestore.getInstance().collection("soccer_stats")
+                    db.whereEqualTo("playerID", playerData.playerID)
+                        .get()
+                        .addOnSuccessListener { documents ->
+                            for (document in documents){
+                                val playerStats = document.toObject(StatsModel::class.java)
+                                val goals = "Goals: " + playerStats.goals
+                                val assists = "Assists: " + playerStats.assists
+
+                                binding.playerGoalsLandingTextView.text = goals
+                                binding.playerAssistsLandingTextView.text = assists
+                            }
+                        }
+                }
+            }
+/*
         val db = FirebaseFirestore.getInstance().collection("soccer_stats")
         db.whereEqualTo("teamID", selectedTeam?.teamID)
             .orderBy("goals")
-            .limitToLast(1)
+            .limit(1)
             .get()
             .addOnSuccessListener { querySnapShot ->
                 for (document in querySnapShot) {
@@ -94,26 +122,28 @@ class LandingPageActivity : DrawerBaseActivity() {
                 }
             }
 
-        /*
-        val db = FirebaseFirestore.getInstance().collection("players")
-        db.whereEqualTo("teamID", selectedTeam?.teamID)
-            .get()
-            .addOnSuccessListener { querySnapShot ->
-                for (document in querySnapShot) {
-                    val player = document.toObject(PlayerModel::class.java)
-                    val db2 = FirebaseFirestore.getInstance().collection("soccer_stats")
-                    db.whereEqualTo("playerID", player.playerID)
-                        .orderBy("goals")
-                        .limitToLast(1)
-                        .get()
-                        .addOnSuccessListener { querySnapShot ->
-                            for (document in querySnapShot) {
 
-                            }
+
+                val db = FirebaseFirestore.getInstance().collection("players")
+                db.whereEqualTo("teamID", selectedTeam?.teamID)
+                    .get()
+                    .addOnSuccessListener { querySnapShot ->
+                        for (document in querySnapShot) {
+                            val player = document.toObject(PlayerModel::class.java)
+                            val db2 = FirebaseFirestore.getInstance().collection("soccer_stats")
+                            db.whereEqualTo("playerID", player.playerID)
+                                .orderBy("goals")
+                                .limitToLast(1)
+                                .get()
+                                .addOnSuccessListener { querySnapShot ->
+                                    for (document in querySnapShot) {
+
+                                    }
+                                }
                         }
-                }
-            }
-        */
+                    }
+                */
+
 
         binding.landingToRosterButton.setOnClickListener{
             val intent = Intent(this, RosterActivity::class.java)
